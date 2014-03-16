@@ -1,6 +1,7 @@
 # EyeOfNewt
 
-TODO: Write a gem description
+EyeOfNewt is an ingredient parser. It parses a variety of ingredients written in natural language, such as "1
+can of crushed tomatoes" or "1 onion, diced".
 
 ## Installation
 
@@ -18,7 +19,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```
+ingredient = EyeOfNewt.parse("1 1/2 cups white flour, sifted")
+ingredient.name # == 'white flour'
+ingredient.quantity # == 1.5
+ingredient.unit # == 'cups'
+ingredient.style # == 'sifted'
+```
 
 ## Contributing
 
