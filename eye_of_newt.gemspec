@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "eye_of_newt"
   spec.version       = EyeOfNewt::VERSION
   spec.authors       = ["Peter McCracken"]
-  spec.email         = ["peter.mccracken@jadedpixel.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.email         = ["peter@petermccracken.com"]
+  spec.summary       = %q{Natural language ingredient parser}
+  spec.description   = %q{Parses natural ingredients (e.g. "1 1/2 pounds of potatoes, peeled") into usable parts.}
+  spec.homepage      = "http://github.com/peterjm/eye_of_newt"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
@@ -20,4 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.5"
   spec.add_development_dependency "rake"
+  spec.add_development_dependency "racc"
+  spec.add_development_dependency "activesupport"
 end
