@@ -6,7 +6,8 @@ tomatoes | tomatoes | 1
 1 cup all-purpose flour | all-purpose flour | 1 | cups
 1 1/2 cups all-purpose flour | all-purpose flour | 1.5 | cups
 1.5 cups tomatoes | tomatoes | 1.5 | cups
-#1.5 cups tomatoes | tomatoes | 1 | cup | diced
+1 tomato, diced | tomato | 1 | | diced
+1 onion, finely chopped | onion | 1 | | finely chopped
 #3 1/2 teaspoons baking powder' => ["3 1/2 teaspoons", "baking powder"],
 #1 teaspoon salt' => ["1 teaspoon", "salt"],
 #1 tablespoon white sugar' => ["1 tablespoon", "white sugar"],

@@ -2,9 +2,9 @@ class EyeOfNewt::Parser
 token WORD NUMBER UNIT
 rule
   ingredient
-    #: quantity ingredient_name style
+    : quantity ingredient_name style
     | quantity ingredient_name
-    #| ingredient_name style
+    | ingredient_name style
     | ingredient_name
     ;
   quantity
@@ -18,7 +18,7 @@ rule
     ;
   ingredient_name
     : words { @ingredient.name = result } ;
-  #style : ',' words ;
+  style : ',' words { @ingredient.style = val[1] } ;
   words
     : words word { result = val.join(' ') }
     | word
