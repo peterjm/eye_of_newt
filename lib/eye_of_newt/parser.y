@@ -7,6 +7,9 @@ rule
     | ingredient_name style
     | ingredient_name
     ;
+  ingredient_name
+    : words { @ingredient.name = result }
+    ;
   quantity
     : amount unit
     | amount
@@ -16,8 +19,6 @@ rule
     | number fraction { @ingredient.quantity = val[0] + val[1] }
     | decimal { @ingredient.quantity = result }
     ;
-  ingredient_name
-    : words { @ingredient.name = result } ;
   style : ',' words { @ingredient.style = val[1] } ;
   words
     : words word { result = val.join(' ') }
