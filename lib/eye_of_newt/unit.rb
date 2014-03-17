@@ -25,27 +25,27 @@ module EyeOfNewt
     end
 
     # english units
-    set :cup, "c.", "c", "cup", "cups"
-    set :fluid_ounce, "fl. oz.", "fl oz", "fluid ounce", "fluid ounces"
-    set :gallon, "gal", "gal.", "gallon", "gallons"
-    set :ounce, "oz", "oz.", "ounce", "ounces"
-    set :pint, "pt", "pt.", "pint", "pints"
-    set :pound, "lb", "lb.", "pound", "pounds"
-    set :quart, "qt", "qt.", "qts", "qts.", "quart", "quarts"
-    set :tablespoon, "tbsp.", "tbsp", "T", "T.", "tablespoon", "tablespoons", "tbs.", "tbs"
-    set :teaspoon, "tsp.", "tsp", "t", "t.", "teaspoon", "teaspoons"
+    set :cups, "c.", "c", "cup", "cups"
+    set :fluid_ounces, "fl. oz.", "fl oz", "fluid ounce", "fluid ounces"
+    set :gallons, "gal", "gal.", "gallon", "gallons"
+    set :ounces, "oz", "oz.", "ounce", "ounces"
+    set :pints, "pt", "pt.", "pint", "pints"
+    set :pounds, "lb", "lb.", "pound", "pounds"
+    set :quarts, "qt", "qt.", "qts", "qts.", "quart", "quarts"
+    set :tablespoons, "tbsp.", "tbsp", "T", "T.", "tablespoon", "tablespoons", "tbs.", "tbs"
+    set :teaspoons, "tsp.", "tsp", "t", "t.", "teaspoon", "teaspoons"
 
     # metric units
-    set :gram, "g", "g.", "gr", "gr.", "gram", "grams"
-    set :kilogram, "kg", "kg.", "kilogram", "kilograms"
-    set :liter, "l", "l.", "liter", "liters"
-    set :milligram, "mg", "mg.", "milligram", "milligrams"
-    set :milliliter, "ml", "ml.", "milliliter", "milliliters"
+    set :grams, "g", "g.", "gr", "gr.", "gram", "grams"
+    set :kilograms, "kg", "kg.", "kilogram", "kilograms"
+    set :liters, "l", "l.", "liter", "liters", "litre", "litres"
+    set :milligrams, "mg", "mg.", "milligram", "milligrams"
+    set :milliliters, "ml", "ml.", "milliliter", "milliliters", "millilitre", "millilitres"
 
     # nonstandard units
-    set :pinch, "pinch", "pinches"
-    set :dash, "dash", "dashes"
-    set :touch, "touch", "touches"
-    set :handful, "handful", "handfuls"
+    set :pinches, "pinch", "pinches"
+    set :dashes, "dash", "dashes"
+    set :touches, "touch", "touches"
+    set :handfules, "handful", "handfuls"
   end
 end

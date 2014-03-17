@@ -1,9 +1,10 @@
 tomatoes | tomatoes | 1
 2 tomatoes | tomatoes | 2
 2 yellow potatoes | yellow potatoes | 2
-1 cup flour | flour | 1 | cup
-1 cup all-purpose flour | all-purpose flour | 1 | cup
-#1 1/2 cups all-purpose flour' => ["1 1/2 cups", "all-purpose flour"],
+1 cup flour | flour | 1 | cups
+2 cups flour | flour | 2 | cups
+1 cup all-purpose flour | all-purpose flour | 1 | cups
+1 1/2 cups all-purpose flour | all-purpose flour | 1.5 | cups
 #1 cup tomatoes, diced | tomatoes | 1 | cup | diced
 #3 1/2 teaspoons baking powder' => ["3 1/2 teaspoons", "baking powder"],
 #1 teaspoon salt' => ["1 teaspoon", "salt"],

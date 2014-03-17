@@ -25,61 +25,68 @@ module EyeOfNewt
     do_parse
     @ingredient
   end
+
+  def to_unit(u)
+    EyeOfNewt::Unit[u]
+  end
 ##### State transition tables begin ###
 
 racc_action_table = [
-     8,     9,    13,     8,    10,     8,    15 ]
+     8,     9,    15,     8,    13,    10,     8,    17,    18,    19 ]
 
 racc_action_check = [
-     0,     0,     4,     2,     1,     6,    10 ]
+     0,     0,     5,     2,     4,     1,     6,    10,    15,    18 ]
 
 racc_action_pointer = [
-    -2,     4,     1,   nil,    -2,   nil,     3,   nil,   nil,   nil,
-     6,   nil,   nil,   nil,   nil,   nil ]
+    -2,     5,     1,   nil,     0,    -1,     4,   nil,   nil,   nil,
+     7,   nil,   nil,   nil,   nil,     3,   nil,   nil,     6,   nil ]
 
 racc_action_default = [
-    -1,   -13,   -13,    -3,    -5,    -6,    -7,    -9,   -10,   -12,
-   -13,    -2,    -4,   -11,    -8,    16 ]
+    -1,   -15,   -15,    -3,    -5,    -6,    -8,   -10,   -11,   -13,
+   -15,    -2,    -4,   -12,    -7,   -15,    -9,    20,   -15,   -14 ]
 
 racc_goto_table = [
-     3,     4,    11,     1,     2,    12,     5,    14 ]
+     3,    12,    11,     1,     4,     2,     5,    14,    16 ]
 
 racc_goto_check = [
-     3,     4,     3,     1,     2,     5,     6,     8 ]
+     3,     5,     3,     1,     4,     2,     6,     7,     9 ]
 
 racc_goto_pointer = [
-   nil,     3,     4,     0,     1,     1,     6,   nil,     1 ]
+   nil,     3,     5,     0,     4,    -3,     6,     2,   nil,     2 ]
 
 racc_goto_default = [
-   nil,   nil,   nil,   nil,   nil,   nil,   nil,     6,     7 ]
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil,     6,     7 ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
-  0, 6, :_reduce_none,
-  2, 6, :_reduce_none,
-  1, 6, :_reduce_none,
+  0, 7, :_reduce_none,
   2, 7, :_reduce_none,
   1, 7, :_reduce_none,
-  1, 9, :_reduce_6,
-  1, 8, :_reduce_7,
-  2, 12, :_reduce_8,
-  1, 12, :_reduce_none,
-  1, 13, :_reduce_none,
-  1, 10, :_reduce_11,
-  1, 11, :_reduce_12 ]
+  2, 8, :_reduce_none,
+  1, 8, :_reduce_none,
+  1, 10, :_reduce_6,
+  2, 10, :_reduce_7,
+  1, 9, :_reduce_8,
+  2, 14, :_reduce_9,
+  1, 14, :_reduce_none,
+  1, 15, :_reduce_none,
+  1, 11, :_reduce_12,
+  1, 12, :_reduce_13,
+  3, 13, :_reduce_14 ]
 
-racc_reduce_n = 13
+racc_reduce_n = 15
 
-racc_shift_n = 16
+racc_shift_n = 20
 
 racc_token_table = {
   false => 0,
   :error => 1,
   :WORD => 2,
   :NUMBER => 3,
-  :UNIT => 4 }
+  :UNIT => 4,
+  "/" => 5 }
 
-racc_nt_base = 5
+racc_nt_base = 6
 
 racc_use_result_var = true
 
@@ -105,6 +112,7 @@ Racc_token_to_s_table = [
   "WORD",
   "NUMBER",
   "UNIT",
+  "\"/\"",
   "$start",
   "ingredient",
   "quantity",
@@ -112,6 +120,7 @@ Racc_token_to_s_table = [
   "amount",
   "unit",
   "number",
+  "fraction",
   "words",
   "word" ]
 
@@ -137,26 +146,36 @@ def _reduce_6(val, _values, result)
 end
 
 def _reduce_7(val, _values, result)
- @ingredient.name = result 
+ @ingredient.quantity = val[0] + val[1] 
     result
 end
 
 def _reduce_8(val, _values, result)
+ @ingredient.name = result 
+    result
+end
+
+def _reduce_9(val, _values, result)
  result = val.join(' ') 
     result
 end
 
-# reduce 9 omitted
-
 # reduce 10 omitted
 
-def _reduce_11(val, _values, result)
- @ingredient.unit = result 
+# reduce 11 omitted
+
+def _reduce_12(val, _values, result)
+ @ingredient.unit = to_unit(result) 
     result
 end
 
-def _reduce_12(val, _values, result)
+def _reduce_13(val, _values, result)
  result = val[0].to_i 
+    result
+end
+
+def _reduce_14(val, _values, result)
+ result = val[0].to_f / val[2].to_f 
     result
 end
 

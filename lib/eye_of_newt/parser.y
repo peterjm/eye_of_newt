@@ -13,7 +13,7 @@ rule
     ;
   amount
     : number { @ingredient.quantity = result }
-  #  : number fraction
+    | number fraction { @ingredient.quantity = val[0] + val[1] }
   #  | decimal
     ;
   ingredient_name
@@ -24,9 +24,9 @@ rule
     | word
     ;
   word : WORD ;
-  unit : UNIT { @ingredient.unit = result } ;
+  unit : UNIT { @ingredient.unit = to_unit(result) } ;
   number : NUMBER { result = val[0].to_i } ;
-  #fraction : NUMBER '/' NUMBER { result = val[0].to_f / val[2].to_f } ;
+  fraction : NUMBER '/' NUMBER { result = val[0].to_f / val[2].to_f } ;
   #decimal : NUMBER '.' NUMBER { result = val.join.to_f } ;
 end
 
@@ -47,4 +47,8 @@ end
   def parse
     do_parse
     @ingredient
+  end
+
+  def to_unit(u)
+    EyeOfNewt::Unit[u]
   end

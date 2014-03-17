@@ -13,7 +13,7 @@ class EyeOfNewtTest < ActiveSupport::TestCase
         line = tokens.shift
         name = tokens.shift
         quantity = tokens.shift.to_f
-        unit = tokens.shift.presence
+        unit = tokens.shift.presence.try(:to_sym)
         style = tokens.shift.presence
         expected = [name, quantity, unit, style]
         [line, expected]
