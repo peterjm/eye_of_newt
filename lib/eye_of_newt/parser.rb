@@ -7,46 +7,79 @@
 require 'racc/parser.rb'
 module EyeOfNewt
   class Parser < Racc::Parser
+
+
+  require 'eye_of_newt/ingredient'
+
+  def initialize(tokenizer, ingredient = EyeOfNewt::Ingredient.new)
+    @tokenizer = tokenizer
+    @ingredient = ingredient
+    super()
+  end
+
+  def next_token
+    @tokenizer.next_token
+  end
+
+  def parse
+    do_parse
+    @ingredient
+  end
 ##### State transition tables begin ###
 
 racc_action_table = [
-     2,     3,     4 ]
+     8,     9,    13,     8,    10,     8,    15 ]
 
 racc_action_check = [
-     0,     1,     3 ]
+     0,     0,     4,     2,     1,     6,    10 ]
 
 racc_action_pointer = [
-    -2,     1,   nil,     2,   nil ]
+    -2,     4,     1,   nil,    -2,   nil,     3,   nil,   nil,   nil,
+     6,   nil,   nil,   nil,   nil,   nil ]
 
 racc_action_default = [
-    -2,    -2,    -1,    -2,     5 ]
+    -1,   -13,   -13,    -3,    -5,    -6,    -7,    -9,   -10,   -12,
+   -13,    -2,    -4,   -11,    -8,    16 ]
 
 racc_goto_table = [
-     1 ]
+     3,     4,    11,     1,     2,    12,     5,    14 ]
 
 racc_goto_check = [
-     1 ]
+     3,     4,     3,     1,     2,     5,     6,     8 ]
 
 racc_goto_pointer = [
-   nil,     0 ]
+   nil,     3,     4,     0,     1,     1,     6,   nil,     1 ]
 
 racc_goto_default = [
-   nil,   nil ]
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,     6,     7 ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
-  1, 4, :_reduce_none ]
+  0, 6, :_reduce_none,
+  2, 6, :_reduce_none,
+  1, 6, :_reduce_none,
+  2, 7, :_reduce_none,
+  1, 7, :_reduce_none,
+  1, 9, :_reduce_6,
+  1, 8, :_reduce_7,
+  2, 12, :_reduce_8,
+  1, 12, :_reduce_none,
+  1, 13, :_reduce_none,
+  1, 10, :_reduce_11,
+  1, 11, :_reduce_12 ]
 
-racc_reduce_n = 2
+racc_reduce_n = 13
 
-racc_shift_n = 5
+racc_shift_n = 16
 
 racc_token_table = {
   false => 0,
   :error => 1,
-  :STRING => 2 }
+  :WORD => 2,
+  :NUMBER => 3,
+  :UNIT => 4 }
 
-racc_nt_base = 3
+racc_nt_base = 5
 
 racc_use_result_var = true
 
@@ -69,9 +102,18 @@ Racc_arg = [
 Racc_token_to_s_table = [
   "$end",
   "error",
-  "STRING",
+  "WORD",
+  "NUMBER",
+  "UNIT",
   "$start",
-  "string" ]
+  "ingredient",
+  "quantity",
+  "ingredient_name",
+  "amount",
+  "unit",
+  "number",
+  "words",
+  "word" ]
 
 Racc_debug_parser = false
 
@@ -80,6 +122,43 @@ Racc_debug_parser = false
 # reduce 0 omitted
 
 # reduce 1 omitted
+
+# reduce 2 omitted
+
+# reduce 3 omitted
+
+# reduce 4 omitted
+
+# reduce 5 omitted
+
+def _reduce_6(val, _values, result)
+ @ingredient.quantity = result 
+    result
+end
+
+def _reduce_7(val, _values, result)
+ @ingredient.name = result 
+    result
+end
+
+def _reduce_8(val, _values, result)
+ result = val.join(' ') 
+    result
+end
+
+# reduce 9 omitted
+
+# reduce 10 omitted
+
+def _reduce_11(val, _values, result)
+ @ingredient.unit = result 
+    result
+end
+
+def _reduce_12(val, _values, result)
+ result = val[0].to_i 
+    result
+end
 
 def _reduce_none(val, _values, result)
   val[0]
