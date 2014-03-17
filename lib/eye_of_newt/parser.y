@@ -14,7 +14,7 @@ rule
   amount
     : number { @ingredient.quantity = result }
     | number fraction { @ingredient.quantity = val[0] + val[1] }
-  #  | decimal
+    | decimal { @ingredient.quantity = result }
     ;
   ingredient_name
     : words { @ingredient.name = result } ;
@@ -27,7 +27,7 @@ rule
   unit : UNIT { @ingredient.unit = to_unit(result) } ;
   number : NUMBER { result = val[0].to_i } ;
   fraction : NUMBER '/' NUMBER { result = val[0].to_f / val[2].to_f } ;
-  #decimal : NUMBER '.' NUMBER { result = val.join.to_f } ;
+  decimal : NUMBER '.' NUMBER { result = val.join.to_f } ;
 end
 
 ---- inner
