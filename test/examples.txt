@@ -1,13 +1,13 @@
-tomatoes | tomatoes | 1
-2 tomatoes | tomatoes | 2
-2 yellow potatoes | yellow potatoes | 2
+tomatoes | tomatoes | 1 | units
+2 tomatoes | tomatoes | 2 | units
+2 yellow potatoes | yellow potatoes | 2 | units
 1 cup flour | flour | 1 | cups
 2 cups flour | flour | 2 | cups
 1 cup all-purpose flour | all-purpose flour | 1 | cups
 1 1/2 cups all-purpose flour | all-purpose flour | 1.5 | cups
 1.5 cups tomatoes | tomatoes | 1.5 | cups
-1 tomato, diced | tomato | 1 | | diced
-1 onion, finely chopped | onion | 1 | | finely chopped
+1 tomato, diced | tomato | 1 | units | diced
+1 onion, finely chopped | onion | 1 | units | finely chopped
 1 cup of flour | flour | 1 | cups
 1 teaspoon of cream of tartar | cream of tartar | 1 | teaspoons
 

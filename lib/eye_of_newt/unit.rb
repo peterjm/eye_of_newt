@@ -3,6 +3,8 @@
 
 module EyeOfNewt
   class Unit
+    DEFAULT = :units
+
     class << self
       def units
         @units ||= {}
@@ -46,6 +48,7 @@ module EyeOfNewt
     set :pinches, "pinch", "pinches"
     set :dashes, "dash", "dashes"
     set :touches, "touch", "touches"
-    set :handfules, "handful", "handfuls"
+    set :handfuls, "handful", "handfuls"
+    set :units, "units", "unit"
   end
 end
