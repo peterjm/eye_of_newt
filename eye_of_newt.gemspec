@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'eye_of_newt/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "eye_of_newt"
+  spec.name          = "eye-of-newt"
   spec.version       = EyeOfNewt::VERSION
   spec.authors       = ["Peter McCracken"]
   spec.email         = ["peter@petermccracken.com"]
