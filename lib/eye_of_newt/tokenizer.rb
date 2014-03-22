@@ -8,6 +8,7 @@ module EyeOfNewt
     WHITESPACE = /\s+/
     WORD = /[\w-]+/
     NUMBER = /\d+/
+    OF = /of/
 
     def initialize(string, units=Unit.all)
       @units = units
@@ -22,6 +23,8 @@ module EyeOfNewt
       case
       when text = @ss.scan(NUMBER)
         [:NUMBER, text]
+      when text = @ss.scan(/#{OF}\b/)
+        [:OF, text]
       when text = @ss.scan(/#{unit_matcher}\b/)
         [:UNIT, text]
       when text = @ss.scan(/#{WORD}\b/)

@@ -1,5 +1,5 @@
 class EyeOfNewt::Parser
-token WORD NUMBER UNIT
+token WORD NUMBER UNIT OF
 rule
   ingredient
     : quantity ingredient_name style
@@ -11,7 +11,9 @@ rule
     : words { @ingredient.name = result }
     ;
   quantity
-    : amount unit
+    : amount unit of
+    | amount unit
+    | amount of
     | amount
     ;
   amount
@@ -21,9 +23,11 @@ rule
     ;
   style : ',' words { @ingredient.style = val[1] } ;
   words
-    : words word { result = val.join(' ') }
+    : word of words { result = val.join(' ') }
+    | word words { result = val.join(' ') }
     | word
     ;
+  of : OF ;
   word : WORD ;
   unit : UNIT { @ingredient.unit = to_unit(result) } ;
   number : NUMBER { result = val[0].to_i } ;

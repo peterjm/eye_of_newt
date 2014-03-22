@@ -9,6 +9,14 @@ class EyeOfNewt::TokenizerTest < ActiveSupport::TestCase
     assert_nil t.next_token
   end
 
+  test "tokenizes OF" do
+    t = tok("piece of cake")
+    assert_equal [:WORD, "piece"], t.next_token
+    assert_equal [:OF, "of"], t.next_token
+    assert_equal [:WORD, "cake"], t.next_token
+    assert_nil t.next_token
+  end
+
   test "tokenizes fractions" do
     t = tok("1 1/2")
     assert_equal [:NUMBER, "1"], t.next_token
