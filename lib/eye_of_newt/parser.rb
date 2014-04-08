@@ -32,40 +32,40 @@ module EyeOfNewt
 ##### State transition tables begin ###
 
 racc_action_table = [
-     9,     9,    10,    17,    18,    17,    24,     9,    20,    11,
-    23,    14,    14,     9,    17,    28,     9,    30,    31 ]
+    10,    10,    11,    18,    24,    25,    19,    18,    26,    21,
+    10,    12,    15,    15,    10,    18,    24,    10,    31,    32 ]
 
 racc_action_check = [
-     8,     0,     0,     8,     5,     5,    11,     2,     6,     1,
-    10,     3,    12,    14,    15,    20,    21,    23,    28 ]
+     9,     0,     0,     9,    11,    11,     5,     5,    12,     6,
+     2,     1,     3,    13,    15,    16,    21,    22,    24,    25 ]
 
 racc_action_pointer = [
-    -1,     9,     5,     5,   nil,     0,     5,   nil,    -2,   nil,
-     2,     6,     6,   nil,    11,     9,   nil,   nil,   nil,   nil,
-     8,    14,   nil,    14,   nil,   nil,   nil,   nil,    15,   nil,
-   nil,   nil ]
+    -1,    11,     8,     6,   nil,     2,     6,   nil,   nil,    -2,
+   nil,    -3,     8,     7,   nil,    12,    10,   nil,   nil,   nil,
+   nil,     9,    15,   nil,    15,    16,   nil,   nil,   nil,   nil,
+   nil,   nil,   nil ]
 
 racc_action_default = [
-   -23,   -23,   -23,    -4,    -5,    -9,   -10,   -12,   -16,   -18,
-   -20,   -23,    -2,    -3,   -23,    -7,    -8,   -17,   -19,   -11,
-   -23,   -23,   -15,   -23,    32,    -1,   -13,    -6,   -23,   -14,
-   -22,   -21 ]
+   -24,   -24,   -24,    -4,    -5,    -9,   -10,   -12,   -13,   -17,
+   -19,   -21,   -24,    -2,    -3,   -24,    -7,    -8,   -18,   -20,
+   -11,   -24,   -24,   -16,   -24,   -24,    33,    -1,   -14,    -6,
+   -15,   -22,   -23 ]
 
 racc_goto_table = [
-    22,    16,     5,    13,    21,     3,    26,    12,     1,    15,
-     2,    27,    25,    29,     6,    19,     7 ]
+    23,    17,     7,     5,    14,    22,    28,     3,    20,    13,
+    16,     1,    29,    30,    27,     6,     2,     8 ]
 
 racc_goto_check = [
-     5,     8,     6,     4,     8,     3,     5,     3,     1,     7,
-     2,     8,     4,     5,     9,    10,    11 ]
+     5,     8,    10,     6,     4,     8,     5,     3,    10,     3,
+     7,     1,     8,     5,     4,     9,     2,    11 ]
 
 racc_goto_pointer = [
-   nil,     8,    10,     5,     0,    -8,     2,     4,    -4,    14,
-     9,    16,   nil ]
+   nil,    11,    16,     7,     1,    -9,     3,     5,    -4,    15,
+     2,    17,   nil ]
 
 racc_goto_default = [
    nil,   nil,   nil,   nil,   nil,     4,   nil,   nil,   nil,   nil,
-   nil,   nil,     8 ]
+   nil,   nil,     9 ]
 
 racc_reduce_table = [
   0, 0, :racc_error,
@@ -81,20 +81,21 @@ racc_reduce_table = [
   1, 15, :_reduce_10,
   2, 15, :_reduce_11,
   1, 15, :_reduce_12,
-  2, 13, :_reduce_13,
-  3, 14, :_reduce_14,
-  2, 14, :_reduce_15,
+  1, 15, :_reduce_13,
+  2, 13, :_reduce_14,
+  3, 14, :_reduce_15,
+  2, 14, :_reduce_16,
   1, 14, :_reduce_none,
   1, 17, :_reduce_none,
   1, 21, :_reduce_none,
-  1, 16, :_reduce_19,
-  1, 18, :_reduce_20,
-  3, 19, :_reduce_21,
-  3, 20, :_reduce_22 ]
+  1, 16, :_reduce_20,
+  1, 18, :_reduce_21,
+  3, 19, :_reduce_22,
+  3, 20, :_reduce_23 ]
 
-racc_reduce_n = 23
+racc_reduce_n = 24
 
-racc_shift_n = 32
+racc_shift_n = 33
 
 racc_token_table = {
   false => 0,
@@ -194,12 +195,12 @@ def _reduce_12(val, _values, result)
 end
 
 def _reduce_13(val, _values, result)
- @ingredient.style = val[1] 
+ @ingredient.quantity = result 
     result
 end
 
 def _reduce_14(val, _values, result)
- result = val.join(' ') 
+ @ingredient.style = val[1] 
     result
 end
 
@@ -208,28 +209,33 @@ def _reduce_15(val, _values, result)
     result
 end
 
-# reduce 16 omitted
+def _reduce_16(val, _values, result)
+ result = val.join(' ') 
+    result
+end
 
 # reduce 17 omitted
 
 # reduce 18 omitted
 
-def _reduce_19(val, _values, result)
+# reduce 19 omitted
+
+def _reduce_20(val, _values, result)
  @ingredient.unit = to_unit(result) 
     result
 end
 
-def _reduce_20(val, _values, result)
+def _reduce_21(val, _values, result)
  result = val[0].to_i 
     result
 end
 
-def _reduce_21(val, _values, result)
+def _reduce_22(val, _values, result)
  result = val[0].to_f / val[2].to_f 
     result
 end
 
-def _reduce_22(val, _values, result)
+def _reduce_23(val, _values, result)
  result = val.join.to_f 
     result
 end

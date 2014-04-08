@@ -19,6 +19,7 @@ rule
   amount
     : number { @ingredient.quantity = result }
     | number fraction { @ingredient.quantity = val[0] + val[1] }
+    | fraction { @ingredient.quantity = result }
     | decimal { @ingredient.quantity = result }
     ;
   style : ',' words { @ingredient.style = val[1] } ;

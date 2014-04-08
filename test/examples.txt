@@ -5,6 +5,7 @@ tomatoes | tomatoes | 1 | units
 2 cups flour | flour | 2 | cups
 1 cup all-purpose flour | all-purpose flour | 1 | cups
 1 1/2 cups all-purpose flour | all-purpose flour | 1.5 | cups
+1/2 cups all-purpose flour | all-purpose flour | .5 | cups
 1.5 cups tomatoes | tomatoes | 1.5 | cups
 1 tomato, diced | tomato | 1 | units | diced
 1 onion, finely chopped | onion | 1 | units | finely chopped
