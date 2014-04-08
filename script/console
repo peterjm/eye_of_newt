@@ -1,0 +1,3 @@
+#!/bin/bash
+
+irb -Ilib -reye_of_newt
