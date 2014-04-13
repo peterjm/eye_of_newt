@@ -3,6 +3,7 @@ require "eye_of_newt/version"
 require "eye_of_newt/tokenizer"
 require "eye_of_newt/parser"
 require "eye_of_newt/ingredient"
+require "eye_of_newt/unit"
 
 module EyeOfNewt
   class InvalidIngredient < StandardError

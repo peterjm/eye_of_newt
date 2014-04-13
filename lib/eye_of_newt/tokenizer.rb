@@ -1,5 +1,4 @@
 require 'strscan'
-require 'eye_of_newt/unit'
 
 module EyeOfNewt
   class Tokenizer
