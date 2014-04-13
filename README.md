@@ -22,7 +22,7 @@ Or install it yourself as:
 ```
 ingredient = EyeOfNewt.parse("1 1/2 cups white flour, sifted")
 ingredient.name # == 'white flour'
-ingredient.quantity # == 1.5
+ingredient.amount # == 1.5
 ingredient.unit # == 'cups'
 ingredient.style # == 'sifted'
 ```

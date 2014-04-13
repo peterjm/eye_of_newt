@@ -188,27 +188,27 @@ end
 # reduce 9 omitted
 
 def _reduce_10(val, _values, result)
- @ingredient.quantity = result 
+ @ingredient.amount = result 
     result
 end
 
 def _reduce_11(val, _values, result)
- @ingredient.quantity = val[0] + val[1] 
+ @ingredient.amount = val[0] + val[1] 
     result
 end
 
 def _reduce_12(val, _values, result)
- @ingredient.quantity = result 
+ @ingredient.amount = result 
     result
 end
 
 def _reduce_13(val, _values, result)
- @ingredient.quantity = result 
+ @ingredient.amount = result 
     result
 end
 
 def _reduce_14(val, _values, result)
- @ingredient.quantity = 1 
+ @ingredient.amount = 1 
     result
 end
 

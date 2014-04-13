@@ -1,9 +1,9 @@
 module EyeOfNewt
   class Ingredient
-    attr_accessor :quantity, :unit, :name, :style
+    attr_accessor :amount, :unit, :name, :style
 
     def initialize
-      self.quantity = 1
+      self.amount = 1
       self.unit = Unit::DEFAULT
     end
   end

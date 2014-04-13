@@ -17,11 +17,11 @@ rule
     | amount
     ;
   amount
-    : number { @ingredient.quantity = result }
-    | number fraction { @ingredient.quantity = val[0] + val[1] }
-    | fraction { @ingredient.quantity = result }
-    | decimal { @ingredient.quantity = result }
-    | a { @ingredient.quantity = 1 }
+    : number { @ingredient.amount = result }
+    | number fraction { @ingredient.amount = val[0] + val[1] }
+    | fraction { @ingredient.amount = result }
+    | decimal { @ingredient.amount = result }
+    | a { @ingredient.amount = 1 }
     ;
   style : ',' words { @ingredient.style = val[1] } ;
   words
