@@ -5,6 +5,7 @@ require "eye_of_newt/parser"
 require "eye_of_newt/ingredient"
 require "eye_of_newt/units"
 require "eye_of_newt/invalid_ingredient"
+require "eye_of_newt/unknown_conversion"
 
 module EyeOfNewt
 

@@ -9,4 +9,25 @@ class EyeOfNewt::UnitsTest < ActiveSupport::TestCase
     assert_equal "foo", units["bar"]
   end
 
+  test "#conversion_rate throws an error for unknown conversions" do
+    units = EyeOfNewt::Units.new
+    assert_raise EyeOfNewt::UnknownConversion do
+      units.conversion_rate("foo", "bar")
+    end
+  end
+
+  test "#conversion_rate succeeds for self-conversions" do
+    units = EyeOfNewt::Units.new
+    units.add "foo"
+    assert_equal 1, units.conversion_rate("foo", "foo")
+  end
+
+  test "#conversion_rate returns the conversion rate" do
+    units = EyeOfNewt::Units.new
+    units.add "foo", "bar" => 2
+    units.add "bar"
+    assert_equal 2, units.conversion_rate("foo", "bar")
+    assert_equal 0.5, units.conversion_rate("bar", "foo")
+  end
+
 end

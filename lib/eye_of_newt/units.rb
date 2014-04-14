@@ -2,10 +2,11 @@ module EyeOfNewt
   class Units
     DEFAULT = 'units'
 
-    attr_reader :units
+    attr_reader :units, :conversions
 
     def initialize
       @units = {}
+      @conversions = Hash.new { |h, k| h[k] = {} }
     end
 
     def all
@@ -17,10 +18,22 @@ module EyeOfNewt
     end
 
     def add(canonical, *variations)
+      c = variations.last.is_a?(Hash) ? variations.pop : {}
+
       units[canonical] = canonical
       variations.each do |v|
         units[v] = canonical
       end
+
+      conversions[canonical][canonical] = 1
+      c.each do |other_unit, value|
+        conversions[canonical][other_unit] = value
+        conversions[other_unit][canonical] ||= 1.0 / value
+      end
+    end
+
+    def conversion_rate(from, to)
+      conversions[from][to] or raise UnknownConversion.new(from, to)
     end
 
     def setup(&block)
