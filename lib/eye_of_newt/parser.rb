@@ -9,9 +9,7 @@ module EyeOfNewt
   class Parser < Racc::Parser
 
 
-  require 'eye_of_newt/ingredient'
-
-  def initialize(tokenizer, ingredient = EyeOfNewt::Ingredient.new)
+  def initialize(tokenizer, ingredient: EyeOfNewt::Ingredient.new)
     @tokenizer = tokenizer
     @ingredient = ingredient
     super()
@@ -24,6 +22,8 @@ module EyeOfNewt
   def parse
     do_parse
     @ingredient
+  rescue Racc::ParseError
+    raise InvalidIngredient, @tokenizer.string
   end
 
   def to_unit(u)

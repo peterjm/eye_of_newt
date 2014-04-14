@@ -10,7 +10,10 @@ module EyeOfNewt
     OF = /of/
     A = /an?/
 
-    def initialize(string, units=Unit.all)
+    attr_reader :string, :units
+
+    def initialize(string, units: Unit.all)
+      @string = string
       @units = units
       @ss = StringScanner.new(string)
     end
@@ -40,8 +43,8 @@ module EyeOfNewt
     private
 
     def unit_matcher
-      @unit_matcher ||= if @units.any?
-        r = @units
+      @unit_matcher ||= if units.any?
+        r = units
           .sort
           .reverse
           .map{|u|Regexp.escape(u)}

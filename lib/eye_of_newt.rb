@@ -12,8 +12,6 @@ module EyeOfNewt
     tokenizer = EyeOfNewt::Tokenizer.new(ingredient_line)
     parser = EyeOfNewt::Parser.new(tokenizer)
     parser.parse
-  rescue Racc::ParseError
-    raise InvalidIngredient, ingredient_line
   end
 
 end

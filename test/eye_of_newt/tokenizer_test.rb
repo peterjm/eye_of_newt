@@ -51,6 +51,6 @@ class EyeOfNewt::TokenizerTest < ActiveSupport::TestCase
   end
 
   def tok(string, units=[])
-    EyeOfNewt::Tokenizer.new(string, units)
+    EyeOfNewt::Tokenizer.new(string, units: units)
   end
 end

@@ -39,9 +39,7 @@ end
 
 ---- inner
 
-  require 'eye_of_newt/ingredient'
-
-  def initialize(tokenizer, ingredient = EyeOfNewt::Ingredient.new)
+  def initialize(tokenizer, ingredient: EyeOfNewt::Ingredient.new)
     @tokenizer = tokenizer
     @ingredient = ingredient
     super()
@@ -54,6 +52,8 @@ end
   def parse
     do_parse
     @ingredient
+  rescue Racc::ParseError
+    raise InvalidIngredient, @tokenizer.string
   end
 
   def to_unit(u)
