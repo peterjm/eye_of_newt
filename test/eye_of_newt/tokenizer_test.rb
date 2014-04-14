@@ -1,5 +1,4 @@
 require 'test_helper'
-require 'eye_of_newt/tokenizer'
 
 class EyeOfNewt::TokenizerTest < ActiveSupport::TestCase
   test "tokenizes WORD" do

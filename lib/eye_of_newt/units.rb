@@ -18,6 +18,7 @@ module EyeOfNewt
     alias :[] :canonical
 
     def set(canonical, *variations)
+      unit = Unit.new(canonical, variations)
       variations.each do |v|
         units[v] = canonical.to_sym
       end
