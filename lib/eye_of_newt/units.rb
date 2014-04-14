@@ -27,13 +27,14 @@ module EyeOfNewt
 
       conversions[canonical][canonical] = 1
       c.each do |other_unit, value|
-        conversions[canonical][other_unit] = value
-        conversions[other_unit][canonical] ||= 1.0 / value
+        conversions[canonical][other_unit] = value.to_r
+        conversions[other_unit][canonical] ||= 1 / value.to_r
       end
     end
 
     def conversion_rate(from, to)
-      search_conversion(from, to) or raise UnknownConversion.new(from, to)
+      r = search_conversion(from, to) or raise UnknownConversion.new(from, to)
+      r.to_f
     end
 
     def search_conversion(from, to, rate=1, visited=[])
