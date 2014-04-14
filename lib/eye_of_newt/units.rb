@@ -16,18 +16,11 @@ module EyeOfNewt
       units[unit]
     end
 
-    def add(*names)
-      register Unit.new(*names)
-    end
-
-    def register(unit)
-      unit.names.each do |n|
-        register_name(n, unit)
+    def add(canonical, *variations)
+      units[canonical] = canonical
+      variations.each do |v|
+        units[v] = canonical
       end
-    end
-
-    def register_name(name, unit)
-      units[name] = unit
     end
 
     def setup(&block)

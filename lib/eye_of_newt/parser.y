@@ -57,5 +57,5 @@ end
   end
 
   def to_unit(u)
-    EyeOfNewt.units[u].name
+    EyeOfNewt.units[u]
   end
