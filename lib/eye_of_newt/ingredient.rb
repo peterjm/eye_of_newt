@@ -4,7 +4,7 @@ module EyeOfNewt
 
     def initialize
       self.amount = 1
-      self.unit = Unit::DEFAULT
+      self.unit = Units::DEFAULT
     end
   end
 end

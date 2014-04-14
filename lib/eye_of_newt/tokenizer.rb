@@ -12,7 +12,7 @@ module EyeOfNewt
 
     attr_reader :string, :units
 
-    def initialize(string, units: Unit.all)
+    def initialize(string, units: EyeOfNewt.units.all)
       @string = string
       @units = units
       @ss = StringScanner.new(string)
