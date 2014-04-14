@@ -30,4 +30,13 @@ class EyeOfNewt::UnitsTest < ActiveSupport::TestCase
     assert_equal 0.5, units.conversion_rate("bar", "foo")
   end
 
+  test "#conversion_rate can find indirect conversions" do
+    units = EyeOfNewt::Units.new
+    units.add "foo", "bar" => 2
+    units.add "bar", "baz" => 2
+    units.add "baz"
+    assert_equal 4, units.conversion_rate("foo", "baz")
+    assert_equal 0.25, units.conversion_rate("baz", "foo")
+  end
+
 end

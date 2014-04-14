@@ -33,7 +33,18 @@ module EyeOfNewt
     end
 
     def conversion_rate(from, to)
-      conversions[from][to] or raise UnknownConversion.new(from, to)
+      search_conversion(from, to) or raise UnknownConversion.new(from, to)
+    end
+
+    def search_conversion(from, to, rate=1, visited=[])
+      return rate if from == to
+      visited = visited + [from]
+      conversions[from].each do |k, r|
+        next if visited.include?(k)
+        value = search_conversion(k, to, rate*r, visited)
+        return value if value
+      end
+      nil
     end
 
     def setup(&block)
