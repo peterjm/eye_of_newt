@@ -33,7 +33,9 @@ module EyeOfNewt
     end
 
     def conversion_rate(from, to)
-      r = search_conversion(from, to) or raise UnknownConversion.new(from, to)
+      f = units[from]
+      t = units[to]
+      r = search_conversion(f, t) or raise UnknownConversion.new(from, to)
       r.to_f
     end
 

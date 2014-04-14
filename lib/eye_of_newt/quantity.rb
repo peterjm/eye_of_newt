@@ -12,5 +12,13 @@ module EyeOfNewt
       rate = units.conversion_rate(unit, new_unit)
       self.class.new(amount * rate, new_unit)
     end
+
+    def to_s
+      "#{amount} #{unit}"
+    end
+
+    def inspect
+      to_s
+    end
   end
 end
