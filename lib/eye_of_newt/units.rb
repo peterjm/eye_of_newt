@@ -1,6 +1,6 @@
 module EyeOfNewt
   class Units
-    DEFAULT = :units
+    DEFAULT = 'units'
 
     attr_reader :units
 
@@ -12,16 +12,22 @@ module EyeOfNewt
       units.keys
     end
 
-    def canonical(unit)
+    def [](unit)
       units[unit]
     end
-    alias :[] :canonical
 
-    def set(canonical, *variations)
-      unit = Unit.new(canonical, variations)
-      variations.each do |v|
-        units[v] = canonical.to_sym
+    def add(*names)
+      register Unit.new(*names)
+    end
+
+    def register(unit)
+      unit.names.each do |n|
+        register_name(n, unit)
       end
+    end
+
+    def register_name(name, unit)
+      units[name] = unit
     end
 
     def setup(&block)
@@ -31,33 +37,34 @@ module EyeOfNewt
 
     def self.defaults
       new.setup do
-        # List of units was taken from the ingreedy project by Ian C. Anderson
-        # https://github.com/iancanderson/ingreedy/blob/34d83a7f345efd1522065ac57f5ff0e9735e57de/lib/ingreedy/ingreedy_parser.rb#L59
+        # english volume units
+        add "cups", "c.", "c", "cup"
+        add "fluid ounces", "fl. oz.", "fl oz", "fluid ounce"
+        add "gallons", "gal", "gal.", "gallon"
+        add "pints", "pt", "pt.", "pint"
+        add "quarts", "qt", "qt.", "qts", "qts.", "quart"
+        add "tablespoons", "tbsp.", "tbsp", "T", "T.", "tbs.", "tbs", "tablespoon"
+        add "teaspoons", "tsp.", "tsp", "t", "t.", "teaspoon"
 
-        # english units
-        set :cups, "c.", "c", "cup", "cups"
-        set :fluid_ounces, "fl. oz.", "fl oz", "fluid ounce", "fluid ounces"
-        set :gallons, "gal", "gal.", "gallon", "gallons"
-        set :ounces, "oz", "oz.", "ounce", "ounces"
-        set :pints, "pt", "pt.", "pint", "pints"
-        set :pounds, "lb", "lb.", "pound", "pounds"
-        set :quarts, "qt", "qt.", "qts", "qts.", "quart", "quarts"
-        set :tablespoons, "tbsp.", "tbsp", "T", "T.", "tablespoon", "tablespoons", "tbs.", "tbs"
-        set :teaspoons, "tsp.", "tsp", "t", "t.", "teaspoon", "teaspoons"
+        # english mass units
+        add "pounds", "lb", "lb.", "pound"
+        add "ounces", "oz", "oz.", "ounce"
 
-        # metric units
-        set :grams, "g", "g.", "gr", "gr.", "gram", "grams"
-        set :kilograms, "kg", "kg.", "kilogram", "kilograms"
-        set :liters, "l", "l.", "liter", "liters", "litre", "litres"
-        set :milligrams, "mg", "mg.", "milligram", "milligrams"
-        set :milliliters, "ml", "ml.", "milliliter", "milliliters", "millilitre", "millilitres"
+        # metric volume units
+        add "liters", "l", "l.", "liter", "litre", "litres"
+        add "milligrams", "mg", "mg.", "milligram"
+        add "milliliters", "ml", "ml.", "milliliter", "millilitre", "millilitres"
+
+        # metric mass units
+        add "grams", "g", "g.", "gr", "gr.", "gram"
+        add "kilograms", "kg", "kg.", "kilogram"
 
         # nonstandard units
-        set :pinches, "pinch", "pinches"
-        set :dashes, "dash", "dashes"
-        set :touches, "touch", "touches"
-        set :handfuls, "handful", "handfuls"
-        set :units, "units", "unit"
+        add "pinches", "pinch"
+        add "dashes", "dash"
+        add "touches", "touch"
+        add "handfuls", "handful"
+        add "units", "unit"
       end
     end
   end

@@ -27,6 +27,10 @@ ingredient.unit # == 'cups'
 ingredient.style # == 'sifted'
 ```
 
+## Acknowledgements
+
+The original list of units was taken from the [ingreedy project](https://github.com/iancanderson/ingreedy/blob/34d83a7f345efd1522065ac57f5ff0e9735e57de/lib/ingreedy/ingreedy_parser.rb#L59) by Ian C. Anderson
+
 ## Contributing
 
 1. Fork it ( http://github.com/<my-github-username>/eye_of_newt/fork )

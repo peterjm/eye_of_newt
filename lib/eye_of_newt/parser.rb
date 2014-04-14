@@ -27,7 +27,7 @@ module EyeOfNewt
   end
 
   def to_unit(u)
-    EyeOfNewt.units[u]
+    EyeOfNewt.units[u].name
   end
 ##### State transition tables begin ###
 

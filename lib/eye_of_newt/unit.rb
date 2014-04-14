@@ -1,16 +1,15 @@
 module EyeOfNewt
   class Unit
-    def initialize(name, variations)
-      @name = name.to_sym
-      @variations = variations
+    attr_reader :names
+
+    def initialize(*names)
+      @names = names
     end
 
-    def to_s
-      @name.to_s
+    def name
+      names.first
     end
+    alias_method :to_s, :name
 
-    def to_sym
-      @name
-    end
   end
 end
