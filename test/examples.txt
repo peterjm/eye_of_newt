@@ -10,7 +10,7 @@ tomatoes | tomatoes | 1 | units
 1 tomato, diced | tomato | 1 | units | diced
 1 onion, finely chopped | onion | 1 | units | finely chopped
 1 cup of flour | flour | 1 | cups
-1 teaspoon of cream of tartar | cream of tartar | 1 | teaspoons
+1 teaspoon of cream of tartar | cream of tartar | 1 | tsp
 a pinch of salt | salt | 1 | pinches
 
 #1 (46 fluid ounce) can tomato juice' => ["1 (46 fluid ounce) can", "tomato juice"],

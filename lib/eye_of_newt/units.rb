@@ -62,26 +62,26 @@ module EyeOfNewt
     def self.defaults
       new.setup do
         # english volume units
-        add "cups", "c.", "c", "cup", "tablespoons" => 16, "fluid ounces" => 8, "milliliters" => 235
-        add "fluid ounces", "fl. oz.", "fl oz", "fluid ounce"
+        add "cups", "c.", "c", "cup", "tbsp" => 16, "fl oz" => 8, "ml" => 235
+        add "fl oz", "fl. oz.", "fluid ounces", "fluid ounce"
         add "gallons", "gal", "gal.", "gallon", "quarts" => 4
         add "pints", "pt", "pt.", "pint", "cups" => 2
         add "quarts", "qt", "qt.", "qts", "qts.", "quart", "pints" => 2
-        add "tablespoons", "tbsp.", "tbsp", "T", "T.", "tbs.", "tbs", "tablespoon", "teaspoons" => 3
-        add "teaspoons", "tsp.", "tsp", "t", "t.", "teaspoon"
+        add "tbsp", "tbsp.", "T", "T.", "tbs.", "tbs", "tablespoons", "tablespoon", "tsp" => 3
+        add "tsp", "tsp.", "t", "t.", "teaspoons", "teaspoon"
 
         # english mass units
-        add "pounds", "lb", "lb.", "pound", "ounces" => 16, "grams" => 454
-        add "ounces", "oz", "oz.", "ounce"
+        add "lb", "lb.", "pounds", "pound", "oz" => 16, "g" => 454
+        add "oz", "oz.", "ounces", "ounce"
 
         # metric volume units
-        add "liters", "l", "l.", "liter", "litre", "litres", "milliliters" => 1000
-        add "milliliters", "ml", "ml.", "milliliter", "millilitre", "millilitres"
+        add "l", "l.", "liter", "liters", "litre", "litres", "ml" => 1000
+        add "ml", "ml.", "milliliter", "milliliters", "millilitre", "millilitres"
 
         # metric mass units
-        add "kilograms", "kg", "kg.", "kilogram", "grams" => 1000
-        add "grams", "g", "g.", "gr", "gr.", "gram", "milligrams" => 1000
-        add "milligrams", "mg", "mg.", "milligram"
+        add "kg", "kg.", "kilogram", "kilograms", "g" => 1000
+        add "g", "g.", "gr", "gr.", "gram", "grams", "mg" => 1000
+        add "mg", "mg", "mg.", "milligram", "milligrams"
 
         # nonstandard units
         add "pinches", "pinch"
