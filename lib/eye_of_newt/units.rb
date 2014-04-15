@@ -62,7 +62,7 @@ module EyeOfNewt
     def self.defaults
       new.setup do
         # english volume units
-        add "cups", "c.", "c", "cup", "tablespoons" => 16, "fluid ounces" => 8
+        add "cups", "c.", "c", "cup", "tablespoons" => 16, "fluid ounces" => 8, "milliliters" => 235
         add "fluid ounces", "fl. oz.", "fl oz", "fluid ounce"
         add "gallons", "gal", "gal.", "gallon", "quarts" => 4
         add "pints", "pt", "pt.", "pint", "cups" => 2
