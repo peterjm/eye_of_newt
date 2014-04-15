@@ -9,8 +9,17 @@ class EyeOfNewt::UnitsTest < ActiveSupport::TestCase
     assert_equal "foo", units["bar"]
   end
 
+  test "#[] raises an exception for unknown units" do
+    units = EyeOfNewt::Units.new
+    assert_raise EyeOfNewt::UnknownUnit do
+      units["foo"]
+    end
+  end
+
   test "#conversion_rate throws an error for unknown conversions" do
     units = EyeOfNewt::Units.new
+    units.add "foo"
+    units.add "bar"
     assert_raise EyeOfNewt::UnknownConversion do
       units.conversion_rate("foo", "bar")
     end

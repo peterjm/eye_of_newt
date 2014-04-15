@@ -14,7 +14,7 @@ module EyeOfNewt
     end
 
     def [](unit)
-      units[unit]
+      units[unit] or raise UnknownUnit.new(unit)
     end
 
     def add(canonical, *variations)
@@ -33,8 +33,8 @@ module EyeOfNewt
     end
 
     def conversion_rate(from, to)
-      f = units[from]
-      t = units[to]
+      f = self[from]
+      t = self[to]
       r = search_conversion(f, t) or raise UnknownConversion.new(from, to)
       r.to_f
     end
