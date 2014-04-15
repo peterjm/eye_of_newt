@@ -13,8 +13,8 @@ module EyeOfNewt
       @units = units
     end
 
-    def in(new_unit)
-      rate = units.conversion_rate(unit, new_unit)
+    def in(new_unit, conversions: {})
+      rate = units.conversion_rate(unit, new_unit, extra: conversions)
       self.class.new(amount * rate, new_unit, units: units)
     end
 

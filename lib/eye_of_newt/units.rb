@@ -1,3 +1,5 @@
+require 'active_support/core_ext/hash/deep_merge'
+
 module EyeOfNewt
   class Units
     DEFAULT = 'units'
@@ -33,19 +35,20 @@ module EyeOfNewt
       end
     end
 
-    def conversion_rate(from, to)
+    def conversion_rate(from, to, extra: {})
       f = self[from]
       t = self[to]
-      r = search_conversion(f, t) or raise UnknownConversion.new(from, to)
+      c = conversions.deep_merge(extra)
+      r = search_conversion(f, t, c) or raise UnknownConversion.new(from, to)
       r.to_f
     end
 
-    def search_conversion(from, to, rate=1, visited=[])
+    def search_conversion(from, to, conversions, rate=1, visited=[])
       return rate if from == to
       visited = visited + [from]
       conversions[from].each do |k, r|
         next if visited.include?(k)
-        value = search_conversion(k, to, rate*r, visited)
+        value = search_conversion(k, to, conversions, rate*r, visited)
         return value if value
       end
       nil

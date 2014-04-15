@@ -13,6 +13,18 @@ class EyeOfNewt::QuantityTest < ActiveSupport::TestCase
     assert_equal "foo", foo.unit
   end
 
+  test "#in takes additional conversions" do
+    units = EyeOfNewt::Units.new
+    units.add "foo", "bar" => 2
+    units.add "bar"
+    units.add "baz"
+
+    foo = EyeOfNewt::Quantity.new(1, "foo", units: units)
+    baz = foo.in("baz", conversions: {"bar" => {"baz" => 10}})
+    assert_equal 20, baz.amount
+    assert_equal "baz", baz.unit
+  end
+
   test "#to_s makes appropriate strings" do
     assert_equal "1", EyeOfNewt::Quantity.new(1, "unit").to_s
     assert_equal "1/2", EyeOfNewt::Quantity.new(0.5, "unit").to_s
