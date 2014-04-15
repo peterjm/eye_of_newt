@@ -1,3 +1,5 @@
+require 'active_support/core_ext/module/attribute_accessors'
+
 require "eye_of_newt/version"
 
 require "eye_of_newt/tokenizer"
@@ -9,22 +11,13 @@ require "eye_of_newt/errors"
 
 module EyeOfNewt
 
-  class << self
+  mattr_accessor :units
+  self.units = Units.defaults
 
-    def units
-      @units ||= Units.defaults
-    end
-
-    def units=(value)
-      @units = value
-    end
-
-    def parse(ingredient_line)
-      tokenizer = EyeOfNewt::Tokenizer.new(ingredient_line)
-      parser = EyeOfNewt::Parser.new(tokenizer)
-      parser.parse
-    end
-
+  def self.parse(ingredient_line)
+    tokenizer = EyeOfNewt::Tokenizer.new(ingredient_line)
+    parser = EyeOfNewt::Parser.new(tokenizer)
+    parser.parse
   end
 
 end
