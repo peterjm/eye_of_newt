@@ -2,11 +2,12 @@ module EyeOfNewt
   class Units
     DEFAULT = 'units'
 
-    attr_reader :units, :conversions
+    attr_reader :units, :conversions, :default
 
-    def initialize
+    def initialize(default: DEFAULT)
       @units = {}
       @conversions = Hash.new { |h, k| h[k] = {} }
+      @default = default
     end
 
     def all
@@ -84,6 +85,7 @@ module EyeOfNewt
         add "dashes", "dash"
         add "touches", "touch"
         add "handfuls", "handful"
+
         add "units", "unit"
       end
     end
