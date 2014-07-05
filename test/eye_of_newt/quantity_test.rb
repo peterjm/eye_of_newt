@@ -19,8 +19,9 @@ class EyeOfNewt::QuantityTest < ActiveSupport::TestCase
     units.add "bar"
     units.add "baz"
 
+    conversion = EyeOfNewt::Quantity.new(10, "bar", units: units).per("baz")
     foo = EyeOfNewt::Quantity.new(1, "foo", units: units)
-    baz = foo.in("baz", conversions: {"bar" => {"baz" => 10}})
+    baz = foo.in("baz", conversions: conversion)
     assert_equal 20, baz.amount
     assert_equal "baz", baz.unit
   end
@@ -32,6 +33,12 @@ class EyeOfNewt::QuantityTest < ActiveSupport::TestCase
     assert_equal "1 1/2 tbsp", EyeOfNewt::Quantity.new(1.5, "tbs").to_s
     assert_equal "1000 g", EyeOfNewt::Quantity.new(1001, "grams").to_s
     assert_equal "1/3 g", EyeOfNewt::Quantity.new(0.33, "grams").to_s
+  end
+
+  test "#per returns a conversion rate" do
+    conv = EyeOfNewt::Quantity.new(100, "grams").per("cups")
+    expected = {"g" => {"cups" => 100}}
+    assert_equal expected, conv
   end
 
 end

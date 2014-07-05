@@ -23,6 +23,10 @@ module EyeOfNewt
     end
     alias :inspect :to_s
 
+    def per(other_unit)
+      {unit => {other_unit => amount}}
+    end
+
     private
 
     def fraction_str
