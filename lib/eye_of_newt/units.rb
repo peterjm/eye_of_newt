@@ -2,14 +2,12 @@ require 'active_support/core_ext/hash/deep_merge'
 
 module EyeOfNewt
   class Units
-    DEFAULT = 'units'
-
     attr_reader :units, :conversions, :default
 
-    def initialize(default: DEFAULT)
+    def initialize
       @units = {}
       @conversions = Hash.new { |h, k| h[k] = {} }
-      @default = default
+      @default = nil
     end
 
     def all
@@ -20,38 +18,30 @@ module EyeOfNewt
       units[unit] or raise UnknownUnit.new(unit)
     end
 
-    def add(canonical, *variations)
-      c = variations.last.is_a?(Hash) ? variations.pop : {}
-
+    def add_unit(canonical, *variations, default: false)
       units[canonical] = canonical
       variations.each do |v|
         units[v] = canonical
       end
 
+      @default = canonical if default
+
       conversions[canonical][canonical] = 1
-      c.each do |other_unit, value|
-        conversions[canonical][other_unit] = value.to_r
-        conversions[other_unit][canonical] ||= 1 / value.to_r
-      end
     end
 
-    def conversion_rate(from, to, extra: {})
+    def add_conversion(amount, unit, other_unit)
+      unit = self[unit]
+      other_unit = self[other_unit]
+
+      new_conversion = {unit => {other_unit => amount.to_r}, other_unit => {unit => 1/amount.to_r}}
+      conversions.deep_merge!(new_conversion)
+    end
+
+    def conversion_rate(from, to)
       f = self[from]
       t = self[to]
-      c = conversions.deep_merge(extra)
-      r = search_conversion(f, t, c) or raise UnknownConversion.new(from, to)
+      r = search_conversion(f, t) or raise UnknownConversion.new(from, to)
       r.to_f
-    end
-
-    def search_conversion(from, to, conversions, rate=1, visited=[])
-      return rate if from == to
-      visited = visited + [from]
-      conversions[from].each do |k, r|
-        next if visited.include?(k)
-        value = search_conversion(k, to, conversions, rate*r, visited)
-        return value if value
-      end
-      nil
     end
 
     def setup(&block)
@@ -62,35 +52,65 @@ module EyeOfNewt
     def self.defaults
       new.setup do
         # english volume units
-        add "cups", "c.", "c", "cup", "tbsp" => 16, "fl oz" => 8, "ml" => 235
-        add "fl oz", "fl. oz.", "fluid ounces", "fluid ounce"
-        add "gallons", "gal", "gal.", "gallon", "quarts" => 4
-        add "pints", "pt", "pt.", "pint", "cups" => 2
-        add "quarts", "qt", "qt.", "qts", "qts.", "quart", "pints" => 2
-        add "tbsp", "tbsp.", "T", "T.", "tbs.", "tbs", "tablespoons", "tablespoon", "tsp" => 3
-        add "tsp", "tsp.", "t", "t.", "teaspoons", "teaspoon"
+        add_unit "cups", "c.", "c", "cup"
+        add_unit "fl oz", "fl. oz.", "fluid ounces", "fluid ounce"
+        add_unit "gallons", "gal", "gal.", "gallon"
+        add_unit "pints", "pt", "pt.", "pint"
+        add_unit "quarts", "qt", "qt.", "qts", "qts.", "quart"
+        add_unit "tbsp", "tbsp.", "T", "T.", "tbs.", "tbs", "tablespoons", "tablespoon"
+        add_unit "tsp", "tsp.", "t", "t.", "teaspoons", "teaspoon"
 
         # english mass units
-        add "lb", "lb.", "pounds", "pound", "oz" => 16, "g" => 454
-        add "oz", "oz.", "ounces", "ounce"
+        add_unit "lb", "lb.", "pounds", "pound"
+        add_unit "oz", "oz.", "ounces", "ounce"
 
         # metric volume units
-        add "l", "l.", "liter", "liters", "litre", "litres", "ml" => 1000
-        add "ml", "ml.", "milliliter", "milliliters", "millilitre", "millilitres"
+        add_unit "l", "l.", "liter", "liters", "litre", "litres"
+        add_unit "ml", "ml.", "milliliter", "milliliters", "millilitre", "millilitres"
 
         # metric mass units
-        add "kg", "kg.", "kilogram", "kilograms", "g" => 1000
-        add "g", "g.", "gr", "gr.", "gram", "grams", "mg" => 1000
-        add "mg", "mg", "mg.", "milligram", "milligrams"
+        add_unit "kg", "kg.", "kilogram", "kilograms"
+        add_unit "g", "g.", "gr", "gr.", "gram", "grams"
+        add_unit "mg", "mg", "mg.", "milligram", "milligrams"
 
         # nonstandard units
-        add "pinches", "pinch"
-        add "dashes", "dash"
-        add "touches", "touch"
-        add "handfuls", "handful"
+        add_unit "pinches", "pinch"
+        add_unit "dashes", "dash"
+        add_unit "touches", "touch"
+        add_unit "handfuls", "handful"
 
-        add "units", "unit"
+        add_unit "units", "unit", default: true
+
+        add_conversion 16, "tbsp", "cup"
+        add_conversion 8, "fl oz", "cup"
+        add_conversion 235, "ml", "cup"
+        add_conversion 4, "quarts", "gallon"
+        add_conversion 2, "cups", "pint"
+        add_conversion 2, "pints", "quart"
+        add_conversion 3, "tsp", "tbsp"
+
+        add_conversion 16, "oz", "pound"
+        add_conversion 454, "grams", "pound"
+
+        add_conversion 1000, "ml", "liter"
+
+        add_conversion 1000, "g", "kg"
+        add_conversion 1000, "mg", "g"
       end
     end
+
+    private
+
+    def search_conversion(from, to, rate=1, visited=[])
+      return rate if from == to
+      visited = visited + [from]
+      conversions[from].each do |k, r|
+        next if visited.include?(k)
+        value = search_conversion(k, to, rate*r, visited)
+        return value if value
+      end
+      nil
+    end
+
   end
 end
