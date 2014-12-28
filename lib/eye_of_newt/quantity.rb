@@ -9,12 +9,12 @@ module EyeOfNewt
 
     def initialize(amount, unit, units: EyeOfNewt.units)
       @amount = amount
-      @unit = units[unit]
       @units = units
+      @unit = units[unit]
     end
 
-    def in(new_unit, conversions: {})
-      rate = units.conversion_rate(unit, new_unit, extra: conversions)
+    def in(new_unit)
+      rate = units.conversion_rate(unit, new_unit)
       self.class.new(amount * rate, new_unit, units: units)
     end
 
@@ -22,10 +22,6 @@ module EyeOfNewt
       [fraction_str, unit_str].compact.join(' ')
     end
     alias :inspect :to_s
-
-    def per(other_unit)
-      {unit => {other_unit => amount}}
-    end
 
     private
 
