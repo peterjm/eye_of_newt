@@ -2,14 +2,12 @@ require 'active_support/core_ext/hash/deep_merge'
 
 module EyeOfNewt
   class Units
-    DEFAULT = 'units'
-
     attr_reader :units, :conversions, :default
 
-    def initialize(default: DEFAULT)
+    def initialize
       @units = {}
       @conversions = Hash.new { |h, k| h[k] = {} }
-      @default = default
+      @default = nil
     end
 
     def all
@@ -20,11 +18,13 @@ module EyeOfNewt
       units[unit] or raise UnknownUnit.new(unit)
     end
 
-    def add_unit(canonical, *variations)
+    def add_unit(canonical, *variations, default: false)
       units[canonical] = canonical
       variations.each do |v|
         units[v] = canonical
       end
+
+      @default = canonical if default
 
       conversions[canonical][canonical] = 1
     end
@@ -79,7 +79,7 @@ module EyeOfNewt
         add_unit "touches", "touch"
         add_unit "handfuls", "handful"
 
-        add_unit "units", "unit"
+        add_unit "units", "unit", default: true
 
         add_conversion 16, "tbsp", "cup"
         add_conversion 8, "fl oz", "cup"

@@ -10,6 +10,13 @@ class EyeOfNewt::UnitsTest < ActiveSupport::TestCase
     assert_equal ["foo", "f", "bar", "b"], units.all
   end
 
+  test "#default returns the default unit" do
+    units = EyeOfNewt::Units.new.setup do
+      add_unit "foo", "f", default: true
+    end
+    assert_equal "foo", units.default
+  end
+
   test "#[] returns the canonical name of the unit" do
     units = EyeOfNewt::Units.new.setup do
       add_unit "foo", "f"
