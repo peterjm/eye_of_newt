@@ -9,9 +9,10 @@ module EyeOfNewt
   class Parser < Racc::Parser
 
 
-  def initialize(tokenizer, ingredient: EyeOfNewt::Ingredient.new)
+  def initialize(tokenizer, units:, ingredient: nil)
     @tokenizer = tokenizer
-    @ingredient = ingredient
+    @units = units
+    @ingredient = ingredient || default_ingredient
     super()
   end
 
@@ -27,7 +28,11 @@ module EyeOfNewt
   end
 
   def to_unit(u)
-    EyeOfNewt.units[u]
+    @units[u]
+  end
+
+  def default_ingredient
+    EyeOfNewt::Ingredient.new(amount: 1, unit: @units.default)
   end
 ##### State transition tables begin ###
 
