@@ -1,5 +1,5 @@
 class EyeOfNewt::Parser
-token WORD NUMBER UNIT OF A
+token WORD NUMBER UNIT OF A TEXT
 rule
   ingredient
     : quantity ingredient_name style
@@ -23,11 +23,12 @@ rule
     | decimal { @ingredient.amount = result }
     | a { @ingredient.amount = 1 }
     ;
-  style : ',' words { @ingredient.style = val[1] } ;
+  style : ',' text { @ingredient.style = val[1] } ;
   words
     : word words { result = val.join(' ') }
     | word
     ;
+  text : TEXT
   word : WORD | a | of ;
   a : A ;
   of : OF ;

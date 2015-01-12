@@ -12,6 +12,11 @@ tomatoes | tomatoes | 1 | units
 1 cup of flour | flour | 1 | cups
 1 teaspoon of cream of tartar | cream of tartar | 1 | tsp
 a pinch of salt | salt | 1 | pinches
+4 large leeks, trimmed & thinly sliced | large leeks | 4 | units | trimmed & thinly sliced
+3 pounds potatoes, washed and cut into 2-inch chunks | potatoes | 3 | lb | washed and cut into 2-inch chunks
+#3 tablespoons sunflower oil, ghee, or clarified butter
+#4-5 massive handfuls of spinach, very roughly chopped
+#1/2 cup crumbled feta, fresh ricotta, or fresh paneer
 
 #1 (46 fluid ounce) can tomato juice' => ["1 (46 fluid ounce) can", "tomato juice"],
 #1 (29 ounce) can tomato sauce' => ["1 (29 ounce) can", "tomato sauce"],
@@ -20,5 +25,3 @@ a pinch of salt | salt | 1 | pinches
 
 #1 1/2 cups chopped onion' => ["1 1/2 cups", "onion", "chopped"],
 #1/4 cup chopped green bell pepper' => ["1/4 cup", "green bell pepper", "chopped"],
-
-#1/8 teaspoon ground cayenne pepper' => ["1/8 teaspoon", "ground cayenne pepper"],

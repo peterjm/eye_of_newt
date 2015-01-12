@@ -2,13 +2,15 @@ require 'strscan'
 
 module EyeOfNewt
   class Tokenizer
-    NO_MATCH = /^&%#&^%/
+    NO_MATCH = /a^/ # should never match anything
 
     WHITESPACE = /\s+/
+    ANYTHING = /.+/
     WORD = /[\w-]+/
     NUMBER = /\d+/
     OF = /of/
     A = /an?/
+    COMMA = ','
 
     attr_reader :string, :units
 
@@ -24,6 +26,8 @@ module EyeOfNewt
       @ss.scan(WHITESPACE)
 
       case
+      when @scan_text && text = @ss.scan(ANYTHING)
+        [:TEXT, text]
       when text = @ss.scan(NUMBER)
         [:NUMBER, text]
       when text = @ss.scan(/#{OF}\b/)
@@ -36,6 +40,7 @@ module EyeOfNewt
         [:WORD, text]
       else
         x = @ss.getch
+        @scan_text = true if x == ','
         [x, x]
       end
     end

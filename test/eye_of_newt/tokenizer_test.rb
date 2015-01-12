@@ -2,9 +2,17 @@ require 'test_helper'
 
 class EyeOfNewt::TokenizerTest < ActiveSupport::TestCase
   test "tokenizes WORD" do
-    t = tok("hello world")
+    t = tok("hello world to-day")
     assert_equal [:WORD, "hello"], t.next_token
     assert_equal [:WORD, "world"], t.next_token
+    assert_equal [:WORD, "to-day"], t.next_token
+    assert_nil t.next_token
+  end
+
+  test "tokenizes TEXT after a comma" do
+    t = tok(", cut into 2-inch chunks")
+    assert_equal [',', ","], t.next_token
+    assert_equal [:TEXT, "cut into 2-inch chunks"], t.next_token
     assert_nil t.next_token
   end
 
