@@ -24,6 +24,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 10"
   spec.add_development_dependency "racc", "~> 1"
   spec.add_development_dependency "pry", "~> 0"
-  spec.add_development_dependency "pry-byebug", "~> 0"
-  spec.add_development_dependency "pry-rescue", "~> 0"
+  spec.add_development_dependency "pry-byebug", "~> 1"
+  spec.add_development_dependency "pry-rescue", "~> 1"
 end

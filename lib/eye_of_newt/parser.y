@@ -23,6 +23,8 @@ rule
     | amount unit
     | amount OF
     | amount
+    | unit OF
+    | unit
     ;
   amount
     : number { @ingredient.amount = result }

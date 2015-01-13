@@ -12,6 +12,7 @@ tomatoes | tomatoes | 1 | units
 1 cup of flour | flour | 1 | cups
 1 teaspoon of cream of tartar | cream of tartar | 1 | tsp
 a pinch of salt | salt | 1 | pinches
+pinch of salt | salt | 1 | pinches
 4 large leeks, trimmed & thinly sliced | large leeks | 4 | units | trimmed & thinly sliced
 3 pounds potatoes, washed and cut into 2-inch chunks | potatoes | 3 | lb | washed and cut into 2-inch chunks
 salt to taste | salt | 1 | to taste
