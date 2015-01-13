@@ -5,7 +5,7 @@ module EyeOfNewt
     NO_MATCH = /a^/ # should never match anything
 
     WHITESPACE = /\s+/
-    ANYTHING = /.+/
+    ANYTHING = /[^()]+/
     WORD = /[\w-]+/
     NUMBER = /\d+/
     OF = /of/
@@ -27,7 +27,7 @@ module EyeOfNewt
       @ss.scan(WHITESPACE)
 
       case
-      when @scan_text && text = @ss.scan(ANYTHING)
+      when @scan_text && text = @ss.scan(/#{ANYTHING}\b/)
         [:TEXT, text]
       when text = @ss.scan(NUMBER)
         [:NUMBER, text]
@@ -43,7 +43,7 @@ module EyeOfNewt
         [:WORD, text]
       else
         x = @ss.getch
-        @scan_text = true if x == ','
+        @scan_text = true if x == ',' || x == '('
         [x, x]
       end
     end

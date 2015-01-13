@@ -2,7 +2,13 @@ class EyeOfNewt::Parser
 token WORD NUMBER UNIT TEXT OF A TO_TASTE
 rule
   ingredient
-    : quantity ingredient_name style
+    : quantity ingredient_name style note
+    | quantity ingredient_name note
+    | ingredient_name to_taste style note
+    | ingredient_name to_taste note
+    | ingredient_name style note
+    | ingredient_name note
+    | quantity ingredient_name style
     | quantity ingredient_name
     | ingredient_name to_taste style
     | ingredient_name to_taste
@@ -27,6 +33,7 @@ rule
     ;
   to_taste : TO_TASTE { @ingredient.unit = to_unit(result) } ;
   style : ',' text { @ingredient.style = val[1] } ;
+  note : '(' text ')' { @ingredient.note = val[1] } ;
   words
     : word words { result = val.join(' ') }
     | word

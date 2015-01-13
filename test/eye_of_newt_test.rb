@@ -15,7 +15,8 @@ class EyeOfNewtTest < ActiveSupport::TestCase
         amount = tokens.shift.to_f
         unit = tokens.shift.presence
         style = tokens.shift.presence
-        expected = [name, amount, unit, style]
+        note = tokens.shift.presence
+        expected = [name, amount, unit, style, note]
         [line, expected]
       }.compact
     end
@@ -24,11 +25,12 @@ class EyeOfNewtTest < ActiveSupport::TestCase
   examples.each do |line, expected|
     test "parses #{line} correctly" do
       ingr = EyeOfNewt.parse(line)
-      name, amount, unit, style = *expected
+      name, amount, unit, style, note = *expected
       assert_equal name, ingr.name, %Q{incorrect name}
       assert_equal amount, ingr.amount, %Q{incorrect amount}
       assert_equal unit, ingr.unit, %Q{incorrect unit}
       assert_equal style, ingr.style, %Q{incorrect style}
+      assert_equal note, ingr.note, %Q{incorrect note}
     end
   end
 
