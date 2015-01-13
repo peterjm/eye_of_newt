@@ -8,6 +8,7 @@ module EyeOfNewt
       @units = {}
       @conversions = Hash.new { |h, k| h[k] = {} }
       @default = nil
+      @unquantified = []
     end
 
     def all
@@ -18,12 +19,13 @@ module EyeOfNewt
       units[unit] or raise UnknownUnit.new(unit)
     end
 
-    def add_unit(canonical, *variations, default: false)
+    def add_unit(canonical, *variations, default: false, unquantified: false)
       units[canonical] = canonical
       variations.each do |v|
         units[v] = canonical
       end
 
+      @unquantified << canonical if unquantified
       @default = canonical if default
 
       conversions[canonical][canonical] = 1
@@ -42,6 +44,10 @@ module EyeOfNewt
       t = self[to]
       r = search_conversion(f, t) or raise UnknownConversion.new(from, to)
       r.to_f
+    end
+
+    def unquantified?(unit)
+      @unquantified.include?(self[unit])
     end
 
     def setup(&block)
@@ -80,7 +86,7 @@ module EyeOfNewt
         add_unit "handfuls", "handful"
 
         # unquantified units
-        add_unit "to taste"
+        add_unit "to taste", unquantified: true
 
         add_unit "units", "unit", default: true
 

@@ -17,6 +17,13 @@ class EyeOfNewt::UnitsTest < ActiveSupport::TestCase
     assert_equal "foo", units.default
   end
 
+  test "#unquantified returns true for unquantified units" do
+    units = EyeOfNewt::Units.new.setup do
+      add_unit "foo", unquantified: true
+    end
+    assert units.unquantified?("foo")
+  end
+
   test "#[] returns the canonical name of the unit" do
     units = EyeOfNewt::Units.new.setup do
       add_unit "foo", "f"

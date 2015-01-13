@@ -26,6 +26,7 @@ module EyeOfNewt
     private
 
     def fraction_str
+      return nil if units.unquantified?(unit)
       whole = fraction.to_i
       fractional = fraction - whole
       [whole, fractional].reject(&:zero?).join(' ')

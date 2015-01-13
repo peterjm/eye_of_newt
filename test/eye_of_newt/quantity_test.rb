@@ -24,6 +24,7 @@ class EyeOfNewt::QuantityTest < ActiveSupport::TestCase
     assert_equal "1 1/2 tbsp", EyeOfNewt::Quantity.new(1.5, "tbs").to_s
     assert_equal "1000 g", EyeOfNewt::Quantity.new(1001, "grams").to_s
     assert_equal "1/3 g", EyeOfNewt::Quantity.new(0.33, "grams").to_s
+    assert_equal "to taste", EyeOfNewt::Quantity.new(1, "to taste").to_s
   end
 
 end
