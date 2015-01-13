@@ -16,6 +16,24 @@ class EyeOfNewt::TokenizerTest < ActiveSupport::TestCase
     assert_nil t.next_token
   end
 
+  test "tokenizes TEXT between parens" do
+    t = tok("(this is a note)")
+    assert_equal ['(', "("], t.next_token
+    assert_equal [:TEXT, "this is a note"], t.next_token
+    assert_equal [')', ')'], t.next_token
+    assert_nil t.next_token
+  end
+
+  test "tokenizes TEXT after a comma, with parens" do
+    t = tok(", sliced (this is a note)")
+    assert_equal [',', ","], t.next_token
+    assert_equal [:TEXT, "sliced"], t.next_token
+    assert_equal ['(', "("], t.next_token
+    assert_equal [:TEXT, "this is a note"], t.next_token
+    assert_equal [')', ')'], t.next_token
+    assert_nil t.next_token
+  end
+
   test "tokenizes TO_TASTE" do
     t = tok("salt to taste")
     assert_equal [:WORD, "salt"], t.next_token
