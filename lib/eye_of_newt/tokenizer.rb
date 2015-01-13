@@ -10,6 +10,7 @@ module EyeOfNewt
     NUMBER = /\d+/
     OF = /of/
     A = /an?/
+    TO_TASTE = /to taste/
     COMMA = ','
 
     attr_reader :string, :units
@@ -34,6 +35,8 @@ module EyeOfNewt
         [:OF, text]
       when text = @ss.scan(/#{A}\b/)
         [:A, text]
+      when text = @ss.scan(/#{TO_TASTE}\b/)
+        [:TO_TASTE, text]
       when text = @ss.scan(/#{unit_matcher}\b/)
         [:UNIT, text]
       when text = @ss.scan(/#{WORD}\b/)

@@ -25,9 +25,9 @@ class EyeOfNewtTest < ActiveSupport::TestCase
     test "parses #{line} correctly" do
       ingr = EyeOfNewt.parse(line)
       name, amount, unit, style = *expected
+      assert_equal name, ingr.name, %Q{incorrect name}
       assert_equal amount, ingr.amount, %Q{incorrect amount}
       assert_equal unit, ingr.unit, %Q{incorrect unit}
-      assert_equal name, ingr.name, %Q{incorrect name}
       assert_equal style, ingr.style, %Q{incorrect style}
     end
   end

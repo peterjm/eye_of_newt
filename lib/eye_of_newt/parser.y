@@ -1,9 +1,11 @@
 class EyeOfNewt::Parser
-token WORD NUMBER UNIT OF A TEXT
+token WORD NUMBER UNIT TEXT OF A TO_TASTE
 rule
   ingredient
     : quantity ingredient_name style
     | quantity ingredient_name
+    | ingredient_name to_taste style
+    | ingredient_name to_taste
     | ingredient_name style
     | ingredient_name
     ;
@@ -11,9 +13,9 @@ rule
     : words { @ingredient.name = result }
     ;
   quantity
-    : amount unit of
+    : amount unit OF
     | amount unit
-    | amount of
+    | amount OF
     | amount
     ;
   amount
@@ -21,17 +23,16 @@ rule
     | number fraction { @ingredient.amount = val[0] + val[1] }
     | fraction { @ingredient.amount = result }
     | decimal { @ingredient.amount = result }
-    | a { @ingredient.amount = 1 }
+    | A { @ingredient.amount = 1 }
     ;
+  to_taste : TO_TASTE { @ingredient.unit = to_unit(result) } ;
   style : ',' text { @ingredient.style = val[1] } ;
   words
     : word words { result = val.join(' ') }
     | word
     ;
   text : TEXT
-  word : WORD | a | of ;
-  a : A ;
-  of : OF ;
+  word : WORD | A | OF ;
   unit : UNIT { @ingredient.unit = to_unit(result) } ;
   number : NUMBER { result = val[0].to_i } ;
   fraction : NUMBER '/' NUMBER { result = val[0].to_f / val[2].to_f } ;

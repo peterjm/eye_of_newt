@@ -79,6 +79,9 @@ module EyeOfNewt
         add_unit "touches", "touch"
         add_unit "handfuls", "handful"
 
+        # unquantified units
+        add_unit "to taste"
+
         add_unit "units", "unit", default: true
 
         add_conversion 16, "tbsp", "cup"

@@ -16,6 +16,13 @@ class EyeOfNewt::TokenizerTest < ActiveSupport::TestCase
     assert_nil t.next_token
   end
 
+  test "tokenizes TO_TASTE" do
+    t = tok("salt to taste")
+    assert_equal [:WORD, "salt"], t.next_token
+    assert_equal [:TO_TASTE, "to taste"], t.next_token
+    assert_nil t.next_token
+  end
+
   test "tokenizes OF" do
     t = tok("piece of cake")
     assert_equal [:WORD, "piece"], t.next_token
