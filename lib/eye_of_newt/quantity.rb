@@ -5,12 +5,13 @@ module EyeOfNewt
     DELTA = 0.01
     SIGNIFICANT_DIGITS = 3
 
-    attr_reader :amount, :unit, :units
+    attr_reader :amount, :unit, :modifier, :units
 
-    def initialize(amount, unit, units: EyeOfNewt.units)
+    def initialize(amount, unit, modifier: nil, units: EyeOfNewt.units)
       @amount = amount
       @units = units
       @unit = units[unit]
+      @modifier = modifier
     end
 
     def in(new_unit)
@@ -19,7 +20,7 @@ module EyeOfNewt
     end
 
     def to_s
-      [fraction_str, unit_str].compact.join(' ')
+      [fraction_str, modifier, unit_str].compact.join(' ')
     end
     alias :inspect :to_s
 
