@@ -13,11 +13,12 @@ module EyeOfNewt
     TO_TASTE = /to taste/
     COMMA = ','
 
-    attr_reader :string, :units
+    attr_reader :string, :units, :unit_modifiers
 
-    def initialize(string, units: EyeOfNewt.units.all)
+    def initialize(string, units: EyeOfNewt.units.all, unit_modifiers: EyeOfNewt.units.unit_modifiers)
       @string = string
       @units = units
+      @unit_modifiers = unit_modifiers
       @ss = StringScanner.new(string)
     end
 
@@ -39,6 +40,8 @@ module EyeOfNewt
         [:TO_TASTE, text]
       when text = @ss.scan(/#{unit_matcher}\b/)
         [:UNIT, text]
+      when text = @ss.scan(/#{unit_modifier}\b/)
+        [:UNIT_MODIFIER, text]
       when text = @ss.scan(/#{WORD}\b/)
         [:WORD, text]
       else
@@ -50,9 +53,17 @@ module EyeOfNewt
 
     private
 
+    def unit_modifier
+      @unit_modifier_matcher ||= match_any(unit_modifiers)
+    end
+
     def unit_matcher
-      @unit_matcher ||= if units.any?
-        r = units
+      @unit_matcher ||= match_any(units)
+    end
+
+    def match_any(elements)
+      if elements.any?
+        r = elements
           .sort
           .reverse
           .map{|u|Regexp.escape(u)}

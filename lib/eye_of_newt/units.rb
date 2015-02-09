@@ -2,11 +2,12 @@ require 'active_support/core_ext/hash/deep_merge'
 
 module EyeOfNewt
   class Units
-    attr_reader :units, :conversions, :default
+    attr_reader :units, :conversions, :unit_modifiers, :default
 
     def initialize
       @units = {}
       @conversions = Hash.new { |h, k| h[k] = {} }
+      @unit_modifiers = []
       @default = nil
       @unquantified = []
     end
@@ -37,6 +38,10 @@ module EyeOfNewt
 
       new_conversion = {unit => {other_unit => amount.to_r}, other_unit => {unit => 1/amount.to_r}}
       conversions.deep_merge!(new_conversion)
+    end
+
+    def add_unit_modifier(modifier)
+      unit_modifiers << modifier
     end
 
     def conversion_rate(from, to)
@@ -87,6 +92,11 @@ module EyeOfNewt
         add_unit "cloves", "clove"
         add_unit "bunches", "bunch"
         add_unit "sprigs", "sprig"
+
+        add_unit_modifier "big"
+        add_unit_modifier "small"
+        add_unit_modifier "heaping"
+        add_unit_modifier "level"
 
         # unquantified units
         add_unit "to taste", unquantified: true

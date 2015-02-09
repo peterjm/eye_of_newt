@@ -1,5 +1,5 @@
 class EyeOfNewt::Parser
-token WORD NUMBER UNIT TEXT OF A TO_TASTE
+token WORD NUMBER UNIT TEXT OF A TO_TASTE UNIT_MODIFIER
 rule
   ingredient
     : quantity ingredient_name style note
@@ -19,10 +19,14 @@ rule
     : words { @ingredient.name = result }
     ;
   quantity
-    : amount unit OF
+    : amount unit_modifier unit OF
+    | amount unit_modifier unit
+    | amount unit OF
     | amount unit
     | amount OF
     | amount
+    | unit_modifier unit OF
+    | unit_modifier unit
     | unit OF
     | unit
     ;
@@ -40,7 +44,8 @@ rule
     : word words { result = val.join(' ') }
     | word
     ;
-  text : TEXT
+  unit_modifier : UNIT_MODIFIER { @ingredient.unit_modifier = val[0] } ;
+  text : TEXT ;
   word : WORD | A | OF ;
   unit : UNIT { @ingredient.unit = to_unit(result) } ;
   number : NUMBER { result = val[0].to_i } ;
