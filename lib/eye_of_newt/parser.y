@@ -23,6 +23,8 @@ rule
     | amount unit_modifier unit
     | amount unit OF
     | amount unit
+    | amount unit_modifier OF
+    | amount unit_modifier
     | amount OF
     | amount
     | unit_modifier unit OF
