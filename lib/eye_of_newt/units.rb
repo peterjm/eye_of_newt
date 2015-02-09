@@ -94,6 +94,7 @@ module EyeOfNewt
         add_unit "sprigs", "sprig"
 
         add_unit_modifier "big"
+        add_unit_modifier "medium"
         add_unit_modifier "small"
         add_unit_modifier "heaping"
         add_unit_modifier "level"
