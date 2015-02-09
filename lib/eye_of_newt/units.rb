@@ -84,6 +84,9 @@ module EyeOfNewt
         add_unit "dashes", "dash"
         add_unit "touches", "touch"
         add_unit "handfuls", "handful"
+        add_unit "cloves", "clove"
+        add_unit "bunches", "bunch"
+        add_unit "sprigs", "sprig"
 
         # unquantified units
         add_unit "to taste", unquantified: true
