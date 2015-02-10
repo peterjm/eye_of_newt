@@ -1,22 +1,26 @@
 class EyeOfNewt::Parser
-token WORD NUMBER UNIT TEXT OF A TO_TASTE UNIT_MODIFIER
+token WORD NUMBER UNIT TEXT OF OR A TO_TASTE UNIT_MODIFIER
 rule
   ingredient
-    : quantity ingredient_name style note
-    | quantity ingredient_name note
-    | ingredient_name to_taste style note
-    | ingredient_name to_taste note
-    | ingredient_name style note
-    | ingredient_name note
-    | quantity ingredient_name style
-    | quantity ingredient_name
-    | ingredient_name to_taste style
-    | ingredient_name to_taste
-    | ingredient_name style
+    : quantity ingredient_names style note
+    | quantity ingredient_names note
+    | ingredient_names to_taste style note
+    | ingredient_names to_taste note
+    | ingredient_names style note
+    | ingredient_names note
+    | quantity ingredient_names style
+    | quantity ingredient_names
+    | ingredient_names to_taste style
+    | ingredient_names to_taste
+    | ingredient_names style
+    | ingredient_names
+    ;
+  ingredient_names
+    : ingredient_name OR ingredient_names
     | ingredient_name
     ;
   ingredient_name
-    : words { @ingredient.name = result }
+    : ingredient_words { @ingredient.names << result }
     ;
   quantity
     : amount unit_modifier unit OF
@@ -55,12 +59,12 @@ rule
     | fraction
     | decimal
     ;
-  words
-    : word words { result = val.join(' ') }
-    | word
+  ingredient_words
+    : ingredient_word ingredient_words { result = val.join(' ') }
+    | ingredient_word
     ;
   text : TEXT ;
-  word : WORD | A | OF | UNIT_MODIFIER ;
+  ingredient_word : WORD | A | OF | UNIT_MODIFIER ;
   number : NUMBER { result = val[0].to_i } ;
   fraction : NUMBER '/' NUMBER { result = val[0].to_f / val[2].to_f } ;
   decimal : NUMBER '.' NUMBER { result = val.join.to_f } ;
