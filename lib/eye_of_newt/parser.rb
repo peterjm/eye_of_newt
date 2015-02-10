@@ -37,50 +37,50 @@ module EyeOfNewt
 ##### State transition tables begin ###
 
 racc_action_table = [
-   -39,    33,    14,    17,    16,    37,    15,    11,   -39,    13,
-   -39,   -39,    14,    16,    31,    29,    15,    20,    13,    14,
-    16,    16,    47,    15,    20,    24,    26,    25,    26,    25,
-    26,    35,    36,    25,    26,    44,    44,    18,    48,    49,
-    35,    50,    51,    26,    26,    54,    55 ]
+   -39,    25,    14,    26,    27,   -36,    15,    20,   -39,    21,
+   -39,   -39,    14,    16,    35,    30,    15,    20,    31,    21,
+    14,    17,    16,    39,    15,    11,    16,    13,    49,    37,
+    38,    26,    27,    26,    27,    33,    16,    27,    46,    46,
+    18,    50,    51,    37,    52,    53,    27,    27,    56,    57 ]
 
 racc_action_check = [
-    11,     8,     0,     0,     0,    18,     0,     0,    11,     0,
-    11,    11,     2,     5,     7,     5,     2,     2,     5,    12,
-    27,     6,    27,    12,    12,     3,    22,     3,     3,    19,
-    19,    17,    17,    21,    21,    25,    26,     1,    28,    30,
-    33,    35,    36,    38,    40,    45,    46 ]
+    11,     3,    12,     3,     3,    13,    12,    12,    11,    12,
+    11,    11,     2,     5,     8,     5,     2,     2,     5,     2,
+     0,     0,     0,    18,     0,     0,    28,     0,    28,    17,
+    17,    19,    19,    22,    22,     7,     6,    23,    26,    27,
+     1,    29,    32,    35,    37,    38,    40,    42,    47,    48 ]
 
 racc_action_pointer = [
-     0,    37,    10,    17,   nil,     9,    17,     8,    -2,   nil,
-   nil,     0,    17,   nil,   nil,   nil,   nil,    18,     5,    19,
-   nil,    23,    15,   nil,   nil,    30,    31,    16,    32,   nil,
-    33,   nil,   nil,    27,   nil,    38,    39,   nil,    32,   nil,
-    33,   nil,   nil,   nil,   nil,    33,    40,   nil,   nil,   nil,
-   nil,   nil,   nil,   nil,   nil,   nil ]
+    18,    40,    10,    -7,   nil,     9,    32,    29,    11,   nil,
+   nil,     0,     0,     1,   nil,   nil,   nil,    16,    23,    21,
+   nil,   nil,    23,    26,   nil,   nil,    33,    34,    22,    35,
+   nil,   nil,    36,   nil,   nil,    30,   nil,    41,    42,   nil,
+    35,   nil,    36,   nil,   nil,   nil,   nil,    36,    43,   nil,
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,   nil ]
 
 racc_action_default = [
-   -45,   -45,   -45,   -12,   -13,   -21,   -45,   -25,   -26,   -28,
-   -29,   -30,   -35,   -36,   -38,   -40,   -41,   -42,   -45,    -8,
-   -39,   -10,   -11,    -6,   -31,   -45,   -45,   -19,   -17,   -20,
-   -23,   -24,   -27,   -45,   -34,   -45,   -45,    56,    -7,    -2,
-    -9,    -4,    -5,   -32,   -37,   -45,   -15,   -18,   -16,   -22,
-   -43,   -44,    -1,    -3,   -33,   -14 ]
+   -46,   -46,   -46,   -12,   -13,   -21,   -46,   -25,   -26,   -28,
+   -29,   -30,   -35,   -41,   -38,   -40,   -42,   -43,   -46,    -8,
+   -39,   -41,   -10,   -11,    -6,   -31,   -46,   -46,   -19,   -17,
+   -20,   -36,   -23,   -24,   -27,   -46,   -34,   -46,   -46,    58,
+    -7,    -2,    -9,    -4,    -5,   -32,   -37,   -46,   -15,   -18,
+   -16,   -22,   -44,   -45,    -1,    -3,   -33,   -14 ]
 
 racc_goto_table = [
-    23,     7,     9,     6,    22,     5,    28,    30,    27,     3,
-    32,    19,    43,    45,    34,    21,    39,     8,    41,    42,
-    38,     2,    40,    10,     1,   nil,   nil,   nil,    46,   nil,
-   nil,   nil,   nil,   nil,   nil,    52,   nil,    53 ]
+    24,     7,    23,     9,     6,     5,    29,    32,     3,    28,
+    19,    34,    45,    47,    36,    22,    41,     8,    40,    43,
+    44,    42,     2,    10,     1,   nil,   nil,   nil,   nil,    48,
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,    54,   nil,    55 ]
 
 racc_goto_check = [
-     5,    10,    12,     9,     4,     8,    10,    10,     9,     3,
-    12,     3,    14,    14,     7,     6,     5,    11,     5,     5,
-     4,     2,     4,    13,     1,   nil,   nil,   nil,    10,   nil,
-   nil,   nil,   nil,   nil,   nil,     5,   nil,     5 ]
+     5,    10,     4,    12,     9,     8,    10,    10,     3,     9,
+     3,    12,    14,    14,     7,     6,     5,    11,     4,     5,
+     5,     4,     2,    13,     1,   nil,   nil,   nil,   nil,    10,
+   nil,   nil,   nil,   nil,   nil,   nil,   nil,     5,   nil,     5 ]
 
 racc_goto_pointer = [
-   nil,    24,    21,     9,     1,    -3,    12,     2,     5,     3,
-     1,    17,     2,    23,   -13,   nil ]
+   nil,    24,    22,     8,    -1,    -3,    12,     2,     5,     4,
+     1,    17,     3,    23,   -14,   nil ]
 
 racc_goto_default = [
    nil,   nil,   nil,   nil,   nil,   nil,   nil,     4,   nil,   nil,
@@ -128,14 +128,15 @@ racc_reduce_table = [
   1, 30, :_reduce_none,
   1, 30, :_reduce_none,
   1, 30, :_reduce_none,
-  1, 25, :_reduce_41,
-  1, 26, :_reduce_42,
-  3, 27, :_reduce_43,
-  3, 28, :_reduce_44 ]
+  1, 30, :_reduce_none,
+  1, 25, :_reduce_42,
+  1, 26, :_reduce_43,
+  3, 27, :_reduce_44,
+  3, 28, :_reduce_45 ]
 
-racc_reduce_n = 45
+racc_reduce_n = 46
 
-racc_shift_n = 56
+racc_shift_n = 58
 
 racc_token_table = {
   false => 0,
@@ -326,22 +327,24 @@ end
 
 # reduce 40 omitted
 
-def _reduce_41(val, _values, result)
+# reduce 41 omitted
+
+def _reduce_42(val, _values, result)
  @ingredient.unit = to_unit(result) 
     result
 end
 
-def _reduce_42(val, _values, result)
+def _reduce_43(val, _values, result)
  result = val[0].to_i 
     result
 end
 
-def _reduce_43(val, _values, result)
+def _reduce_44(val, _values, result)
  result = val[0].to_f / val[2].to_f 
     result
 end
 
-def _reduce_44(val, _values, result)
+def _reduce_45(val, _values, result)
  result = val.join.to_f 
     result
 end

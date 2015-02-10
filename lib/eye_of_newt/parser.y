@@ -48,7 +48,7 @@ rule
     ;
   unit_modifier : UNIT_MODIFIER { @ingredient.unit_modifier = val[0] } ;
   text : TEXT ;
-  word : WORD | A | OF ;
+  word : WORD | A | OF | UNIT_MODIFIER ;
   unit : UNIT { @ingredient.unit = to_unit(result) } ;
   number : NUMBER { result = val[0].to_i } ;
   fraction : NUMBER '/' NUMBER { result = val[0].to_f / val[2].to_f } ;
