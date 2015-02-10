@@ -26,17 +26,4 @@ heaping tablespoon of sugar | sugar | 1 | tbsp | | | heaping
 1 large yellow onion | yellow onion | 1 | units | | | large
 1 pound of large beans | large beans | 1 | lb
 4-5 handfuls of spinach, very roughly chopped | spinach | 4-5 | handfuls | very roughly chopped
-
-
-
-
-#3 tablespoons sunflower oil, ghee, or clarified butter
-#1/2 cup crumbled feta, fresh ricotta, or fresh paneer
-
-#1 (46 fluid ounce) can tomato juice' => ["1 (46 fluid ounce) can", "tomato juice"],
-#1 (29 ounce) can tomato sauce' => ["1 (29 ounce) can", "tomato sauce"],
-#1 (15 ounce) can kidney beans, drained and rinsed' => ["1 (29 ounce) can", "kidney beans", "drained and rinsed"],
-#1 (15 ounce) can pinto beans, drained and rinsed' => ["1 (29 ounce) can", "pinto beans", "drained and rinsed"],
-
-#1 1/2 cups chopped onion' => ["1 1/2 cups", "onion", "chopped"],
-#1/4 cup chopped green bell pepper' => ["1/4 cup", "green bell pepper", "chopped"],
+1 (46 oz) can tomato juice | tomato juice | 1 | cans | | | 46 oz

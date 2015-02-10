@@ -28,6 +28,7 @@ module EyeOfNewt
 
       case
       when @scan_text && text = @ss.scan(/#{ANYTHING}\b/)
+        @scan_text = false
         [:TEXT, text]
       when text = @ss.scan(NUMBER)
         [:NUMBER, text]

@@ -92,6 +92,7 @@ module EyeOfNewt
         add_unit "cloves", "clove"
         add_unit "bunches", "bunch"
         add_unit "sprigs", "sprig"
+        add_unit "cans", "can"
 
         add_unit_modifier "big"
         add_unit_modifier "large"

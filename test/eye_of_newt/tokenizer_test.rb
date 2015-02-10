@@ -24,6 +24,16 @@ class EyeOfNewt::TokenizerTest < ActiveSupport::TestCase
     assert_nil t.next_token
   end
 
+  test "tokenizes TEXT between number and unit" do
+    t = tok("1 (46 oz) can", ["can"])
+    assert_equal [:NUMBER, "1"], t.next_token
+    assert_equal ['(', "("], t.next_token
+    assert_equal [:TEXT, "46 oz"], t.next_token
+    assert_equal [')', ')'], t.next_token
+    assert_equal [:UNIT, 'can'], t.next_token
+    assert_nil t.next_token
+  end
+
   test "tokenizes TEXT after a comma, with parens" do
     t = tok(", sliced (this is a note)")
     assert_equal [',', ","], t.next_token

@@ -37,6 +37,14 @@ rule
     | numerical_range { @ingredient.amount = result }
     | A { @ingredient.amount = 1 }
     ;
+  unit : UNIT { @ingredient.unit = to_unit(result) } ;
+  to_taste : TO_TASTE { @ingredient.unit = to_unit(result) } ;
+  style : ',' text { @ingredient.style = val[1] } ;
+  note : '(' text ')' { @ingredient.note = val[1] } ;
+  unit_modifier
+    : UNIT_MODIFIER { @ingredient.unit_modifier = val[0] }
+    | '(' text ')' { @ingredient.unit_modifier = val[1] }
+    ;
   numerical_range
     : numerical_amount '-' numerical_amount { result = [val[0], val[2]] }
     | numerical_amount '–' numerical_amount { result = [val[0], val[2]] }
@@ -47,17 +55,12 @@ rule
     | fraction
     | decimal
     ;
-  to_taste : TO_TASTE { @ingredient.unit = to_unit(result) } ;
-  style : ',' text { @ingredient.style = val[1] } ;
-  note : '(' text ')' { @ingredient.note = val[1] } ;
   words
     : word words { result = val.join(' ') }
     | word
     ;
-  unit_modifier : UNIT_MODIFIER { @ingredient.unit_modifier = val[0] } ;
   text : TEXT ;
   word : WORD | A | OF | UNIT_MODIFIER ;
-  unit : UNIT { @ingredient.unit = to_unit(result) } ;
   number : NUMBER { result = val[0].to_i } ;
   fraction : NUMBER '/' NUMBER { result = val[0].to_f / val[2].to_f } ;
   decimal : NUMBER '.' NUMBER { result = val.join.to_f } ;
