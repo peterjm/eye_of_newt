@@ -59,6 +59,14 @@ class EyeOfNewt::TokenizerTest < ActiveSupport::TestCase
     assert_nil t.next_token
   end
 
+  test "tokenizes OR" do
+    t = tok("this or that")
+    assert_equal [:WORD, "this"], t.next_token
+    assert_equal [:OR, "or"], t.next_token
+    assert_equal [:WORD, "that"], t.next_token
+    assert_nil t.next_token
+  end
+
   test "tokenizes fractions" do
     t = tok("1 1/2")
     assert_equal [:NUMBER, "1"], t.next_token

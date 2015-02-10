@@ -9,6 +9,7 @@ module EyeOfNewt
     WORD = /\w+(-\w+)*/
     NUMBER = /\d+/
     OF = /of/
+    OR = /or/
     A = /an?/
     TO_TASTE = /to taste/
 
@@ -36,6 +37,8 @@ module EyeOfNewt
         [:OF, text]
       when text = @ss.scan(/#{A}\b/)
         [:A, text]
+      when text = @ss.scan(/#{OR}\b/)
+        [:OR, text]
       when text = @ss.scan(/#{TO_TASTE}\b/)
         [:TO_TASTE, text]
       when text = @ss.scan(/#{unit_matcher}\b/)
