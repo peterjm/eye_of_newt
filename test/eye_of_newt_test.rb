@@ -12,7 +12,8 @@ class EyeOfNewtTest < ActiveSupport::TestCase
         tokens = line.split('|').map(&:strip)
         line = tokens.shift
         name = tokens.shift
-        amount = tokens.shift.to_f
+        amount = tokens.shift.split('-').map(&:to_f)
+        amount = amount.first unless amount.many?
         unit = tokens.shift.presence
         style = tokens.shift.presence
         note = tokens.shift.presence

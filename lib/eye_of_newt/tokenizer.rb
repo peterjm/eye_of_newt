@@ -6,12 +6,11 @@ module EyeOfNewt
 
     WHITESPACE = /\s+/
     ANYTHING = /[^()]+/
-    WORD = /[\w-]+/
+    WORD = /\w+(-\w+)*/
     NUMBER = /\d+/
     OF = /of/
     A = /an?/
     TO_TASTE = /to taste/
-    COMMA = ','
 
     attr_reader :string, :units, :unit_modifiers
 

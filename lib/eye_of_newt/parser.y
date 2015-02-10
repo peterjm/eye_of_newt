@@ -33,11 +33,19 @@ rule
     | unit
     ;
   amount
-    : number { @ingredient.amount = result }
-    | number fraction { @ingredient.amount = val[0] + val[1] }
-    | fraction { @ingredient.amount = result }
-    | decimal { @ingredient.amount = result }
+    : numerical_amount { @ingredient.amount = result }
+    | numerical_range { @ingredient.amount = result }
     | A { @ingredient.amount = 1 }
+    ;
+  numerical_range
+    : numerical_amount '-' numerical_amount { result = [val[0], val[2]] }
+    | numerical_amount '–' numerical_amount { result = [val[0], val[2]] }
+    ;
+  numerical_amount
+    : number
+    | number fraction { result = val[0] + val[1] }
+    | fraction
+    | decimal
     ;
   to_taste : TO_TASTE { @ingredient.unit = to_unit(result) } ;
   style : ',' text { @ingredient.style = val[1] } ;

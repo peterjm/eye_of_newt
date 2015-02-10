@@ -16,18 +16,25 @@ module EyeOfNewt
 
     def in(new_unit)
       rate = units.conversion_rate(unit, new_unit)
-      self.class.new(amount * rate, new_unit, units: units)
+      new_amount = range? ? amount.map{|a| a * rate} : amount * rate
+      self.class.new(new_amount, new_unit, units: units)
     end
 
     def to_s
-      [fraction_str, modifier, unit_str].compact.join(' ')
+      amount_str = range? ? amount.map{|a| fraction_str(a)}.join('–') : fraction_str(amount)
+      [amount_str, modifier, unit_str].compact.join(' ')
     end
     alias :inspect :to_s
 
     private
 
-    def fraction_str
+    def range?
+      amount.is_a?(Array)
+    end
+
+    def fraction_str(a)
       return nil if units.unquantified?(unit)
+      fraction = to_fraction(a)
       whole = fraction.to_i
       fractional = fraction - whole
       [whole, fractional].reject(&:zero?).join(' ')
@@ -35,12 +42,12 @@ module EyeOfNewt
 
     def unit_str
       return nil if unit == units.default
-      singular = fraction <= 1 && fraction.numerator == 1
+      singular = range? ? amount.last <= 1 : amount <= 1
       singular ? unit.singularize : unit
     end
 
-    def fraction
-      @fraction ||= signif(amount, SIGNIFICANT_DIGITS).to_r.rationalize(DELTA)
+    def to_fraction(a)
+      signif(a, SIGNIFICANT_DIGITS).to_r.rationalize(DELTA)
     end
 
     def signif(value, digits)
