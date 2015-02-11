@@ -93,6 +93,8 @@ module EyeOfNewt
         add_unit "bunches", "bunch"
         add_unit "sprigs", "sprig"
         add_unit "cans", "can"
+        add_unit "packages", "package"
+        add_unit "containers", "container"
 
         add_unit_modifier "big"
         add_unit_modifier "large"
