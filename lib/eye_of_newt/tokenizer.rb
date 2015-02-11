@@ -8,10 +8,10 @@ module EyeOfNewt
     ANYTHING = /[^()]+/
     WORD = /\w+(-\w+)*/
     NUMBER = /\d+/
-    OF = /of/
-    OR = /or/
-    A = /an?/
-    TO_TASTE = /to taste/
+    OF = /of/i
+    OR = /or/i
+    A = /an?/i
+    TO_TASTE = /to taste/i
 
     attr_reader :string, :units, :unit_modifiers
 

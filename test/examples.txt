@@ -28,3 +28,4 @@ heaping tablespoon of sugar | sugar | 1 | tbsp | | | heaping
 4-5 handfuls of spinach, very roughly chopped | spinach | 4-5 | handfuls | very roughly chopped
 1 (46 oz) can tomato juice | tomato juice | 1 | cans | | | 46 oz
 kale or chard or spinach | kale,chard,spinach | 1 | units
+kale OR chard OR spinach | kale,chard,spinach | 1 | units
