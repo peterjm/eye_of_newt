@@ -20,6 +20,7 @@ module EyeOfNewt
       @units = units
       @unit_modifiers = unit_modifiers
       @ss = StringScanner.new(string)
+      @scan_text = nil
     end
 
     def next_token

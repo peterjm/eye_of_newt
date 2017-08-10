@@ -267,7 +267,7 @@ Racc_debug_parser = false
 # reduce 14 omitted
 
 def _reduce_15(val, _values, result)
- @ingredient.names << result 
+ @ingredient.names << result
     result
 end
 
@@ -296,64 +296,64 @@ end
 # reduce 27 omitted
 
 def _reduce_28(val, _values, result)
- @ingredient.amount = result 
+ @ingredient.amount = result
     result
 end
 
 def _reduce_29(val, _values, result)
- @ingredient.amount = result 
+ @ingredient.amount = result
     result
 end
 
 def _reduce_30(val, _values, result)
- @ingredient.amount = 1 
+ @ingredient.amount = 1
     result
 end
 
 def _reduce_31(val, _values, result)
- @ingredient.unit = to_unit(result) 
+ @ingredient.unit = to_unit(result)
     result
 end
 
 def _reduce_32(val, _values, result)
- @ingredient.unit = to_unit(result) 
+ @ingredient.unit = to_unit(result)
     result
 end
 
 def _reduce_33(val, _values, result)
- @ingredient.style = val[1] 
+ @ingredient.style = val[1]
     result
 end
 
 def _reduce_34(val, _values, result)
- @ingredient.note = val[1] 
+ @ingredient.note = val[1]
     result
 end
 
 def _reduce_35(val, _values, result)
- @ingredient.unit_modifier = val[0] 
+ @ingredient.unit_modifier = val[0]
     result
 end
 
 def _reduce_36(val, _values, result)
- @ingredient.unit_modifier = val[1] 
+ @ingredient.unit_modifier = val[1]
     result
 end
 
 def _reduce_37(val, _values, result)
- result = [val[0], val[2]] 
+ result = [val[0], val[2]]
     result
 end
 
 def _reduce_38(val, _values, result)
- result = [val[0], val[2]] 
+ result = [val[0], val[2]]
     result
 end
 
 # reduce 39 omitted
 
 def _reduce_40(val, _values, result)
- result = val[0] + val[1] 
+ result = val[0] + val[1]
     result
 end
 
@@ -362,7 +362,7 @@ end
 # reduce 42 omitted
 
 def _reduce_43(val, _values, result)
- result = val.join(' ') 
+ result = val.join(' ')
     result
 end
 
@@ -379,17 +379,17 @@ end
 # reduce 49 omitted
 
 def _reduce_50(val, _values, result)
- result = val[0].to_i 
+ result = val[0].to_i
     result
 end
 
 def _reduce_51(val, _values, result)
- result = val[0].to_f / val[2].to_f 
+ result = val[0].to_f / val[2].to_f
     result
 end
 
 def _reduce_52(val, _values, result)
- result = val.join.to_f 
+ result = val.join.to_f
     result
 end
 

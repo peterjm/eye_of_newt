@@ -31,15 +31,23 @@ class EyeOfNewtTest < ActiveSupport::TestCase
       assert_equal names, ingr.names, %Q{incorrect names}
       assert_equal amount, ingr.amount, %Q{incorrect amount}
       assert_equal unit, ingr.unit, %Q{incorrect unit}
-      assert_equal style, ingr.style, %Q{incorrect style}
-      assert_equal note, ingr.note, %Q{incorrect note}
-      assert_equal unit_modifier, ingr.unit_modifier, %Q{incorrect unit modifier}
+      assert_equal_or_nil style, ingr.style, %Q{incorrect style}
+      assert_equal_or_nil note, ingr.note, %Q{incorrect note}
+      assert_equal_or_nil unit_modifier, ingr.unit_modifier, %Q{incorrect unit modifier}
     end
   end
 
   test "raises InvalidIngredient on invalid input" do
     assert_raise EyeOfNewt::InvalidIngredient do
       EyeOfNewt.parse("1")
+    end
+  end
+
+  def assert_equal_or_nil(expected, actual, message)
+    if expected
+      assert_equal expected, actual, message
+    else
+      assert_nil actual, message
     end
   end
 end

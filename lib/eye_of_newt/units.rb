@@ -56,7 +56,7 @@ module EyeOfNewt
     end
 
     def setup(&block)
-      instance_eval &block
+      instance_eval(&block)
       self
     end
 
