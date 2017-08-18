@@ -84,6 +84,9 @@ module EyeOfNewt
         add_unit "g", "g.", "gr", "gr.", "gram", "grams"
         add_unit "mg", "mg", "mg.", "milligram", "milligrams"
 
+        # english distance units
+        add_unit "inch", "inches"
+
         # nonstandard units
         add_unit "pinches", "pinch"
         add_unit "dashes", "dash"
