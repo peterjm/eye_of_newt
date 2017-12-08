@@ -98,6 +98,7 @@ module EyeOfNewt
         add_unit "cans", "can"
         add_unit "packages", "package"
         add_unit "containers", "container"
+        add_unit "sticks", "stick"
 
         add_unit_modifier "big"
         add_unit_modifier "large"
@@ -105,6 +106,7 @@ module EyeOfNewt
         add_unit_modifier "small"
         add_unit_modifier "heaping"
         add_unit_modifier "level"
+        add_unit_modifier "scant"
 
         # unquantified units
         add_unit "to taste", unquantified: true
